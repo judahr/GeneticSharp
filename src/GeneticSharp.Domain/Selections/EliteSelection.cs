@@ -12,10 +12,10 @@ namespace GeneticSharp
     /// <see href="https://en.wikipedia.org/wiki/Selection_(genetic_algorithm)">Wikipedia</see>
     /// </remarks>
     [DisplayName("Elite")]
-    public sealed class EliteSelection : SelectionBase
+    public class EliteSelection : SelectionBase
     {
-        readonly int _previousGenerationChromosomesNumber;
-        List<IChromosome> _previousGenerationChromosomes;
+        private readonly int _previousGenerationChromosomesNumber;
+        private List<IChromosome> _previousGenerationChromosomes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneticSharp.EliteSelection"/> class.

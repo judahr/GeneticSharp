@@ -24,10 +24,11 @@ namespace GeneticSharp
 
                 try
                 {
-                    result = Parallel.For(0, Tasks.Count, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (i, state) =>
+                    //result = Parallel.For(0, Tasks.Count, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (i, state) =>
+                    Parallel.ForEach(Tasks, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (task, state) =>
                     {
                         // Execute the target function (fitness).
-                        Tasks[i]();
+                        task();
 
                         // If cancellation token was requested OR take more time expected on Timeout property, 
                         // then stop the running.

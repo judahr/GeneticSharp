@@ -9,7 +9,8 @@ namespace GeneticSharp
     /// <remarks>
     /// <para>
     /// The alternating position crossover operator (Larrañaga et al. 1996a) simply creates an offspring by selecting alternately the next 
-    /// element of the first parent and the next element of the second parent, omitting the elements already present in the offspring
+    /// element of the first parent and the next element of the second parent, omitting the elements already present in the offspring. 
+    /// Only for ordered chromosomes.
     /// </para>
     /// <para>
     /// For example, if parent 1 is (1 2 3 4 5 6 7 8) and parent 2 is (3 7 5 1 6 8 2 4) 

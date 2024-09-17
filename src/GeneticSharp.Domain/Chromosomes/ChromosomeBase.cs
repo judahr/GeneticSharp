@@ -157,7 +157,7 @@ namespace GeneticSharp
         /// <param name="index">The gene index to replace.</param>
         /// <param name="gene">The new gene.</param>
         /// <exception cref="System.ArgumentOutOfRangeException">index;There is no Gene on index {0} to be replaced..With(index)</exception>
-        public void ReplaceGene(int index, Gene gene)
+        public virtual void ReplaceGene(int index, Gene gene)
         {
             if (index < 0 || index >= m_length)
             {
@@ -176,7 +176,7 @@ namespace GeneticSharp
         /// <remarks>
         /// The genes to be replaced can't be greater than the available space between the start index and the end of the chromosome.
         /// </remarks>
-        public void ReplaceGenes(int startIndex, Gene[] genes)
+        public virtual void ReplaceGenes(int startIndex, Gene[] genes)
         {
             ExceptionHelper.ThrowIfNull("genes", genes);
 
@@ -304,7 +304,7 @@ namespace GeneticSharp
         /// </code>
         /// </remarks>
         /// </summary>        
-        protected virtual void CreateGenes()
+        public virtual void CreateGenes()
         {
             for (int i = 0; i < Length; i++)
             {

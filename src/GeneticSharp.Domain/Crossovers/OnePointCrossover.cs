@@ -104,7 +104,10 @@ namespace GeneticSharp
             var cutGenesCount = SwapPointIndex + 1;
             var child = leftParent.CreateNew();
             child.ReplaceGenes(0, leftParent.GetGenes().Take(cutGenesCount).ToArray());
-            child.ReplaceGenes(cutGenesCount, rightParent.GetGenes().Skip(cutGenesCount).ToArray());
+
+            //var rightParentNew = rightParent.CreateNew();
+            var rightGenes = rightParent.GetGenes().Skip(cutGenesCount);
+            child.ReplaceGenes(cutGenesCount, rightGenes.ToArray());
 
             return child;
         }        

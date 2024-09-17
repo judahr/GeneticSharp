@@ -50,9 +50,12 @@ namespace GeneticSharp
                 CancellationTokenSource = new CancellationTokenSource();
                 var parallelTasks = new Task[Tasks.Count];
 
-                for (int i = 0; i < Tasks.Count; i++)
+                int i = 0;
+                foreach (var task in Tasks) 
+                    //for (int i = 0; i < Tasks.Count; i++)
                 {
-                    parallelTasks[i] = Task.Run(Tasks[i], CancellationTokenSource.Token);
+                    parallelTasks[i] = Task.Run(task, CancellationTokenSource.Token);
+                    i++;
                 }
 
                 // Need to verify, because TimeSpan.MaxValue passed to Task.WaitAll throws a System.ArgumentOutOfRangeException.
