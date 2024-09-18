@@ -129,7 +129,12 @@ namespace GeneticSharp
             Generations = new List<Generation>();
             GenerationsNumber = 0;
 
-            var chromosomes = new List<IChromosome>(_seedPopulation);
+            var chromosomes = new List<IChromosome>();
+
+            if (_seedPopulation != null)
+            {
+                chromosomes.AddRange(_seedPopulation);
+            }
 
             for (int i = chromosomes.Count; i < MinSize; i++)
             {
