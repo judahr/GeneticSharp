@@ -12,21 +12,29 @@ namespace GeneticSharp
     /// </summary>
     public class GeneMutation : MutationBase
     {
+        Action<Gene> action;
+        public GeneMutation(Action<Gene> a) { action = a; }
+
         protected override void PerformMutate(IChromosome chromosome, float probability)
         {
             ValidateLength(chromosome);
 
             if (RandomizationProvider.Current.GetDouble() <= probability)
             {
+
+                
                 int i = RandomizationProvider.Current.GetInt(0, chromosome.Length - 1);
 
                 Gene gene = chromosome.GetGene(i);
-                var geneM = gene.Value as IGeneValueMutate;
 
-                if (geneM !=null)
-                {
-                    geneM.Mutate();
-                }
+                action(gene);
+
+                //var geneM = gene.Value as IGeneValueMutate;
+
+                //if (geneM !=null)
+                //{
+                //    geneM.Mutate();
+                //}
 
 
             }

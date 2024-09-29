@@ -15,7 +15,7 @@ namespace GeneticSharp.Domain.Mutations
         private readonly IMutation[] _mutations;
         private RandomMutation() { }
 
-        public RandomMutation(bool isOrdered, IMutation[] mutations)
+        public RandomMutation(bool isOrdered, params IMutation[] mutations)
         {
             _isOrdered = isOrdered;
             _mutations = mutations;
