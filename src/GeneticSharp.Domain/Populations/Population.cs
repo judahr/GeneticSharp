@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GeneticSharp
 {
@@ -136,7 +137,9 @@ namespace GeneticSharp
                 chromosomes.AddRange(_seedPopulation);
             }
 
-            for (int i = chromosomes.Count; i < MinSize; i++)
+            
+            Parallel.For(0, MinSize-1, i=> 
+                //for (int i = chromosomes.Count; i < MinSize; i++)
             {
                 var c = AdamChromosome.CreateNew();
                 c.CreateGenes();
@@ -150,6 +153,7 @@ namespace GeneticSharp
 
                 chromosomes.Add(c);
             }
+            );
 
             CreateNewGeneration(chromosomes);
         }
