@@ -23,7 +23,7 @@ namespace GeneticSharp
             {
 
                 
-                int i = RandomizationProvider.Current.GetInt(0, chromosome.Length - 1);
+                int i = RandomizationProvider.Current.GetInt(0, chromosome.Length);
 
                 Gene gene = chromosome.GetGene(i);
 
@@ -50,21 +50,21 @@ namespace GeneticSharp
                 throw new MutationException(this, "A chromosome should have, at least, 1 gene. {0} has only {1} gene.".With(chromosome.GetType().Name, chromosome.Length));
             }
 
-            bool implementsIGeneValueMutate = false;
+            //bool implementsIGeneValueMutate = false;
 
-            foreach(Gene gene in chromosome.GetGenes())
-            {
-                if (gene is IGeneValueMutate)
-                {
-                    implementsIGeneValueMutate = true;
-                    break;
-                }
-            }
+            //foreach(Gene gene in chromosome.GetGenes())
+            //{
+            //    if (gene is IGeneValueMutate)
+            //    {
+            //        implementsIGeneValueMutate = true;
+            //        break;
+            //    }
+            //}
 
-            if (!implementsIGeneValueMutate)
-            {
-                throw new MutationException("At least one gene in a chromosome must implement IGeneMutate.");
-            }
+            //if (!implementsIGeneValueMutate)
+            //{
+            //    throw new MutationException("At least one gene in a chromosome must implement IGeneMutate.");
+            //}
         }
 
 

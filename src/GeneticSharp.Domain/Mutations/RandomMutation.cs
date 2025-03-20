@@ -26,7 +26,7 @@ namespace GeneticSharp.Domain.Mutations
 
         public void Mutate(IChromosome chromosome, float probability)
         {
-            int i = Random.Shared.Next(0, _mutations.Length - 1);
+            int i = Random.Shared.Next(0, _mutations.Length);
             _mutations[i].Mutate(chromosome, probability);
 
 
