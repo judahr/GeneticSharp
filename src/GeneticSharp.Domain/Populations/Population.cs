@@ -41,6 +41,18 @@ namespace GeneticSharp
             Generations = new List<Generation>();
             GenerationStrategy = new PerformanceGenerationStrategy(10);
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Population"/> class with a starting population.
+        /// </summary>
+        /// <param name="minSize">The minimum size (chromosomes).</param>
+        /// <param name="maxSize">The maximum size (chromosomes).</param>
+        /// <param name="seedPopulation">The initial population to start.</param>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// minSize - The minimum size for a population is 2 chromosomes.
+        /// or
+        /// maxSize - The maximum size for a population should be equal or greater than minimum size.
+        /// </exception>
+        
         public Population(int minSize, int maxSize, IList<IChromosome> seedPopulation)
         {
             if (minSize < 2)
