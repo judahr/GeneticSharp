@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using GeneticSharp.Domain.UnitTests;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Multiple
 {
@@ -36,11 +37,11 @@ namespace GeneticSharp.Extensions.UnitTests.Multiple
 
                 chromosome = new MultipleChromosome((i) => new TspChromosome(numberOfCities), 3);
                 //MultiChromosome should create 3 TSP chromosomes and store them in the corresponding property
-                Assert.AreEqual(((MultipleChromosome)chromosome).Chromosomes.Count, 3);
+                ClassicAssert.AreEqual(((MultipleChromosome)chromosome).Chromosomes.Count, 3);
                 var tempMultiFitness = ((MultipleChromosome)chromosome).Chromosomes.Sum(c => fitness.Evaluate(c));
                 fitness = new MultipleFitness(fitness);
                 //Multi fitness should sum over the fitnesses of individual chromosomes
-                Assert.AreEqual(tempMultiFitness, fitness.Evaluate(chromosome));
+                ClassicAssert.AreEqual(tempMultiFitness, fitness.Evaluate(chromosome));
                 population = new Population(30, 30, chromosome);
                 ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation)
                 {
@@ -51,7 +52,7 @@ namespace GeneticSharp.Extensions.UnitTests.Multiple
                   .OrderByDescending(c => c.Fitness).First();
                 var multiChromosomesDistance = bestTSPChromosome.Distance;
 
-                Assert.Less(multiChromosomesDistance, simpleChromosomeDistance);
+                ClassicAssert.Less(multiChromosomesDistance, simpleChromosomeDistance);
             });
         }
 

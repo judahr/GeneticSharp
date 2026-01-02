@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 {
@@ -14,7 +15,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             target.Add(() => { });
             target.Add(() => { });
 
-            Assert.AreEqual(3, target.GetTasks().Count);
+            ClassicAssert.AreEqual(3, target.GetTasks().Count);
         }
 
         [Test()]
@@ -26,7 +27,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             target.Add(() => { });
 
             target.Clear();
-            Assert.AreEqual(0, target.GetTasks().Count);
+            ClassicAssert.AreEqual(0, target.GetTasks().Count);
         }
 
         [Test()]
@@ -34,10 +35,10 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
         {
             var target = new StubTaskExecutor();
             target.Start();
-            Assert.IsFalse(target.GetStopRequested());
+            ClassicAssert.IsFalse(target.GetStopRequested());
             target.Stop();
             target.Start();
-            Assert.IsFalse(target.GetStopRequested());
+            ClassicAssert.IsFalse(target.GetStopRequested());
         }
 
         [Test()]
@@ -46,7 +47,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             var target = new StubTaskExecutor();
             target.Start();
             target.Stop();
-            Assert.IsTrue(target.GetStopRequested());
+            ClassicAssert.IsTrue(target.GetStopRequested());
         }
     }
 }

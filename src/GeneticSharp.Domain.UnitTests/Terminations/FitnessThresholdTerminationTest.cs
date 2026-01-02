@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
-
+using NUnit.Framework.Legacy;
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
     [TestFixture()]
@@ -16,8 +16,8 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                                       new ChromosomeStub() { Fitness = 0.499 });
 
             var target = new FitnessThresholdTermination(0.5);
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
         }
 
         [Test()]
@@ -30,8 +30,8 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
 
             var target = new FitnessThresholdTermination(0.8);
 
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsTrue(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsTrue(target.HasReached(ga));
         }
     }
 }

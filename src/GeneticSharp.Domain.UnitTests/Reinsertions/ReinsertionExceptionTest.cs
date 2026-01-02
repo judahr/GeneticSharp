@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -14,40 +15,40 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         public void Constructor_NoArgs_DefaultValue()
         {
             var target = new ReinsertionException();
-            Assert.IsTrue(target.Message.Contains("ReinsertionException"));
+            ClassicAssert.IsTrue(target.Message.Contains("ReinsertionException"));
         }
 
         [Test]
         public void Constructor_Message_Message()
         {
             var target = new ReinsertionException("1");
-            Assert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("1", target.Message);
         }
 
         [Test]
         public void Constructor_MessageAndInnerException_MessageAndInnerExcetion()
         {
             var target = new ReinsertionException("1", new Exception("2"));
-            Assert.AreEqual("1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
         public void Constructor_ReinsertionAndMessage_ReinsertionAndMessage([Values] bool nullReinsertion)
         {
             var target = new ReinsertionException(nullReinsertion ? null : Substitute.For<IReinsertion>(), "1");
-            Assert.AreEqual(nullReinsertion, target.Reinsertion == null);
-            Assert.AreEqual(nullReinsertion ? ": 1" : $"{target.Reinsertion.GetType().Name}: 1", target.Message);
-            Assert.IsNull(target.InnerException);
+            ClassicAssert.AreEqual(nullReinsertion, target.Reinsertion == null);
+            ClassicAssert.AreEqual(nullReinsertion ? ": 1" : $"{target.Reinsertion.GetType().Name}: 1", target.Message);
+            ClassicAssert.IsNull(target.InnerException);
         }
 
         [Test]
         public void Constructor_ReinsertionAndMessageAndInnerException_ReinsertionAndMessageAndInnerExcetion([Values] bool nullReinsertion)
         {
             var target = new ReinsertionException(nullReinsertion ? null : Substitute.For<IReinsertion>(), "1", new Exception("2"));
-            Assert.AreEqual(nullReinsertion, target.Reinsertion == null);
-            Assert.AreEqual(nullReinsertion ? ": 1" : $"{target.Reinsertion.GetType().Name}: 1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual(nullReinsertion, target.Reinsertion == null);
+            ClassicAssert.AreEqual(nullReinsertion ? ": 1" : $"{target.Reinsertion.GetType().Name}: 1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
                 serializationInfo,
                 new StreamingContext() }) as ReinsertionException;
 
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var serializationInfo = new SerializationInfo(typeof(int), Substitute.For<IFormatterConverter>());
             target.GetObjectData(serializationInfo, new StreamingContext());
 
-            Assert.AreEqual(propertyValue, serializationInfo.GetValue("Reinsertion", typeof(IReinsertion)));
+            ClassicAssert.AreEqual(propertyValue, serializationInfo.GetValue("Reinsertion", typeof(IReinsertion)));
         }
     }
 }

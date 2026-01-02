@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Tsp
 {
@@ -11,10 +12,10 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
         public void Constructor_MaxEqualsIntEdges_Exception()
         {
             var actual = Assert.Catch<ArgumentOutOfRangeException>(() => new TspFitness(10, 0, int.MaxValue, 0, 10000000));
-            Assert.AreEqual("maxX", actual.ParamName);
+            ClassicAssert.AreEqual("maxX", actual.ParamName);
 
             actual = Assert.Catch<ArgumentOutOfRangeException>(() => new TspFitness(10, 0, 10000000, 0, int.MaxValue));
-            Assert.AreEqual("maxY", actual.ParamName);
+            ClassicAssert.AreEqual("maxY", actual.ParamName);
         }
 
         [Test()]
@@ -24,7 +25,7 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
             var chromosome = new TspChromosome(9);
 
             var actual = target.Evaluate(chromosome);
-            Assert.AreNotEqual(0, actual);
+            ClassicAssert.AreNotEqual(0, actual);
         }
 
         [Test()]
@@ -34,7 +35,7 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
             var chromosome = new TspChromosome(10);
 
             var actual = target.Evaluate(chromosome);
-            Assert.AreEqual(0, actual);
+            ClassicAssert.AreEqual(0, actual);
         }
     }
 }

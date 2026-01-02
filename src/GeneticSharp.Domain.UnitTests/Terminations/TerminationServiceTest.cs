@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
@@ -12,13 +13,13 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
         {
             var actual = TerminationService.GetTerminationTypes();
 
-            Assert.AreEqual(6, actual.Count);
-            Assert.AreEqual(typeof(AndTermination), actual[0]);
-            Assert.AreEqual(typeof(FitnessStagnationTermination), actual[1]);
-            Assert.AreEqual(typeof(FitnessThresholdTermination), actual[2]);
-            Assert.AreEqual(typeof(GenerationNumberTermination), actual[3]);
-            Assert.AreEqual(typeof(OrTermination), actual[4]);
-            Assert.AreEqual(typeof(TimeEvolvingTermination), actual[5]);
+            ClassicAssert.AreEqual(6, actual.Count);
+            ClassicAssert.AreEqual(typeof(AndTermination), actual[0]);
+            ClassicAssert.AreEqual(typeof(FitnessStagnationTermination), actual[1]);
+            ClassicAssert.AreEqual(typeof(FitnessThresholdTermination), actual[2]);
+            ClassicAssert.AreEqual(typeof(GenerationNumberTermination), actual[3]);
+            ClassicAssert.AreEqual(typeof(OrTermination), actual[4]);
+            ClassicAssert.AreEqual(typeof(TimeEvolvingTermination), actual[5]);
         }
 
         [Test()]
@@ -26,13 +27,13 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
         {
             var actual = TerminationService.GetTerminationNames();
 
-            Assert.AreEqual(6, actual.Count);
-            Assert.AreEqual("And", actual[0]);
-            Assert.AreEqual("Fitness Stagnation", actual[1]);
-            Assert.AreEqual("Fitness Threshold", actual[2]);
-            Assert.AreEqual("Generation Number", actual[3]);
-            Assert.AreEqual("Or", actual[4]);
-            Assert.AreEqual("Time Evolving", actual[5]);
+            ClassicAssert.AreEqual(6, actual.Count);
+            ClassicAssert.AreEqual("And", actual[0]);
+            ClassicAssert.AreEqual("Fitness Stagnation", actual[1]);
+            ClassicAssert.AreEqual("Fitness Threshold", actual[2]);
+            ClassicAssert.AreEqual("Generation Number", actual[3]);
+            ClassicAssert.AreEqual("Or", actual[4]);
+            ClassicAssert.AreEqual("Time Evolving", actual[5]);
 
         }
 
@@ -58,16 +59,16 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
         public void CreateTerminationByName_ValidName_TerminationCreated()
         {
             ITermination actual = TerminationService.CreateTerminationByName("Fitness Stagnation") as FitnessStagnationTermination;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = TerminationService.CreateTerminationByName("Fitness Threshold") as FitnessThresholdTermination;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = TerminationService.CreateTerminationByName("Generation Number") as GenerationNumberTermination;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = TerminationService.CreateTerminationByName("Time Evolving") as TimeEvolvingTermination;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
         }
 
         [Test()]
@@ -83,16 +84,16 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
         public void GetTerminationTypeByName_ValidName_CrossoverTpe()
         {
             var actual = TerminationService.GetTerminationTypeByName("Generation Number");
-            Assert.AreEqual(typeof(GenerationNumberTermination), actual);
+            ClassicAssert.AreEqual(typeof(GenerationNumberTermination), actual);
 
             actual = TerminationService.GetTerminationTypeByName("Time Evolving");
-            Assert.AreEqual(typeof(TimeEvolvingTermination), actual);
+            ClassicAssert.AreEqual(typeof(TimeEvolvingTermination), actual);
 
             actual = TerminationService.GetTerminationTypeByName("Fitness Threshold");
-            Assert.AreEqual(typeof(FitnessThresholdTermination), actual);
+            ClassicAssert.AreEqual(typeof(FitnessThresholdTermination), actual);
 
             actual = TerminationService.GetTerminationTypeByName("Fitness Stagnation");
-            Assert.AreEqual(typeof(FitnessStagnationTermination), actual);
+            ClassicAssert.AreEqual(typeof(FitnessStagnationTermination), actual);
         }
     }
 }

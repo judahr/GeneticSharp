@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -21,7 +22,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             });
 
             var chromosomes = new List<IChromosome>() { chromosome1 };
-            Assert.IsFalse(chromosomes.AnyHasRepeatedGene());
+            ClassicAssert.IsFalse(chromosomes.AnyHasRepeatedGene());
 
             var chromosome2 = Substitute.For<ChromosomeBase>(3);
             chromosome2.ReplaceGenes(0, new Gene[]
@@ -32,7 +33,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             });
 
             chromosomes.Add(chromosome2);
-            Assert.IsFalse(chromosomes.AnyHasRepeatedGene());
+            ClassicAssert.IsFalse(chromosomes.AnyHasRepeatedGene());
         }
 
         [Test()]
@@ -56,7 +57,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
 
             var chromosomes = new List<IChromosome>() { chromosome1, chromosome2 };
 
-            Assert.IsTrue(chromosomes.AnyHasRepeatedGene());
+            ClassicAssert.IsTrue(chromosomes.AnyHasRepeatedGene());
         }
 
         [Test]

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,13 +16,13 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
                 new Gene(0), new Gene(1)
             });
 
-            Assert.AreEqual ("01", target.ToString ());
+            ClassicAssert.AreEqual ("01", target.ToString ());
 
             target.FlipGene (0);
-            Assert.AreEqual ("11", target.ToString ());
+            ClassicAssert.AreEqual ("11", target.ToString ());
 
             target.FlipGene (1);
-            Assert.AreEqual ("10", target.ToString ());
+            ClassicAssert.AreEqual ("10", target.ToString ());
         }
 
         [Test]
@@ -32,17 +33,16 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             for (int i = 0; i < 100; i++) {
                 var target = new BinaryChromosomeStub (2);
                 var gene0 = target.GenerateGene (0);
-                Assert.IsInstanceOf<int> (gene0.Value);
-
+                ClassicAssert.IsInstanceOf<int>(gene0.Value);
                 var gene1 = target.GenerateGene (1);
-                Assert.IsInstanceOf<int> (gene1.Value);
+                ClassicAssert.IsInstanceOf<int> (gene1.Value);
 
                 target.ReplaceGenes(0, new Gene[] { gene0, gene1 });
 
                 chromosomes.Add (target);
             }
 
-            Assert.IsTrue (chromosomes.Any (c => c.GetGenes ().Any (g => ((int)g.Value) == 0)));
+            ClassicAssert.IsTrue (chromosomes.Any (c => c.GetGenes ().Any (g => ((int)g.Value) == 0)));
         }
     }
 }

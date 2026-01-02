@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Sudoku
 {
@@ -10,10 +11,10 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
         public void Constructor_NoArgs_Length81()
         {
             var target = new SudokuCellsChromosome();
-            Assert.AreEqual(81, target.Length);
+            ClassicAssert.AreEqual(81, target.Length);
 
             var genes = target.GetGenes();
-            Assert.AreEqual(81, genes.Length);
+            ClassicAssert.AreEqual(81, genes.Length);
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
             //the cells chromosome should solve the sudoku in less than 30 generations with 500 chromosomes
             var chromosome = new SudokuCellsChromosome(sudoku);
             var fitness = SudokuTestHelper.Eval(chromosome, sudoku, 500, 0, 30);
-            Assert.GreaterOrEqual(0, fitness);
+            ClassicAssert.GreaterOrEqual(0, fitness);
 
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.AutoConfig
 {
@@ -27,7 +28,7 @@ namespace GeneticSharp.Extensions.UnitTests.AutoConfig
             target.Termination = new FitnessThresholdTermination(0.1f);
 
             var actual = target.Evaluate(chromosome);
-            Assert.AreNotEqual(0, actual);
+            ClassicAssert.AreNotEqual(0, actual);
         }
 
         [Test()]
@@ -41,7 +42,7 @@ namespace GeneticSharp.Extensions.UnitTests.AutoConfig
             var target = new AutoConfigFitness(targetFitness, targetChromosome);
 
             var actual = target.Evaluate(chromosome);
-            Assert.AreEqual(0, actual);
+            ClassicAssert.AreEqual(0, actual);
         }
     }
 }

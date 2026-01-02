@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
-
+using NUnit.Framework.Legacy;
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
     [TestFixture()]
@@ -15,11 +15,11 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
             ga.GenerationsNumber.Returns(1, 2, 3, 4, 5, 6, 7, 8, 0);
 
             var target = new GenerationNumberTermination(10);
-            Assert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
 
             for (int i = 0; i < 8; i++)
             {
-                Assert.IsFalse(target.HasReached(ga));
+                ClassicAssert.IsFalse(target.HasReached(ga));
             }
 
         }
@@ -32,8 +32,8 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
             ga.GenerationsNumber.Returns(10, 11);
 
             var target = new GenerationNumberTermination(10);
-            Assert.IsTrue(target.HasReached(ga));
-            Assert.IsTrue(target.HasReached(ga));
+            ClassicAssert.IsTrue(target.HasReached(ga));
+            ClassicAssert.IsTrue(target.HasReached(ga));
         }
     }
 }

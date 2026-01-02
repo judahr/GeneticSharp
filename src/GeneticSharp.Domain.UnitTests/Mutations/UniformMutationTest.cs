@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Mutations
 {
@@ -30,9 +31,9 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
             RandomizationProvider.Current.GetInts(1, 0, 3).Returns(new int[] { 1 });
 
             target.Mutate(chromosome, 1);
-            Assert.AreEqual(1, chromosome.GetGene(0).Value);
-            Assert.AreEqual(0, chromosome.GetGene(1).Value);
-            Assert.AreEqual(1, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(0, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(2).Value);
         }
 
         [Test()]
@@ -74,9 +75,9 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
             RandomizationProvider.Current = Substitute.For<IRandomization>();
 
             target.Mutate(chromosome, 1);
-            Assert.AreEqual(0, chromosome.GetGene(0).Value);
-            Assert.AreEqual(1, chromosome.GetGene(1).Value);
-            Assert.AreEqual(10, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(0, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(10, chromosome.GetGene(2).Value);
 
         }
 
@@ -98,9 +99,9 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
             RandomizationProvider.Current = Substitute.For<IRandomization>();
          
             target.Mutate(chromosome, 1);
-            Assert.AreEqual(0, chromosome.GetGene(0).Value);
-            Assert.AreEqual(10, chromosome.GetGene(1).Value);
-            Assert.AreEqual(20, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(0, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(10, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(20, chromosome.GetGene(2).Value);
         }
     }
 }

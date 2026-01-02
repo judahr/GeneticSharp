@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -33,39 +34,39 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var other = Substitute.For<ChromosomeBase>(2);
             other.Fitness = 0.5;
 
-            Assert.AreEqual(-1, target.CompareTo(null));
-            Assert.AreEqual(0, target.CompareTo(other));
+            ClassicAssert.AreEqual(-1, target.CompareTo(null));
+            ClassicAssert.AreEqual(0, target.CompareTo(other));
 
             other.Fitness = 0.4;
-            Assert.AreEqual(1, target.CompareTo(other));
+            ClassicAssert.AreEqual(1, target.CompareTo(other));
 
             other.Fitness = 0.6;
-            Assert.AreEqual(-1, target.CompareTo(other));
+            ClassicAssert.AreEqual(-1, target.CompareTo(other));
         }
 
         [Test]
         public void Fitness_AnyChange_Null()
         {
             var target = Substitute.For<ChromosomeBase>(2);
-            Assert.IsFalse(target.Fitness.HasValue);
+            ClassicAssert.IsFalse(target.Fitness.HasValue);
             target.Fitness = 0.5;
-            Assert.IsTrue(target.Fitness.HasValue);
+            ClassicAssert.IsTrue(target.Fitness.HasValue);
 
             target.Fitness = 0.5;
             target.ReplaceGene(0, new Gene(0));
-            Assert.IsFalse(target.Fitness.HasValue);
+            ClassicAssert.IsFalse(target.Fitness.HasValue);
 
             target.Fitness = 0.5;
             target.ReplaceGenes(0, new Gene[] { new Gene(0) });
-            Assert.IsFalse(target.Fitness.HasValue);
+            ClassicAssert.IsFalse(target.Fitness.HasValue);
 
             target.Fitness = 0.5;
             target.GenerateGene(0);
-            Assert.IsTrue(target.Fitness.HasValue);
+            ClassicAssert.IsTrue(target.Fitness.HasValue);
 
             target.Fitness = 0.5;
             target.ReplaceGene(0, new Gene(0));
-            Assert.IsFalse(target.Fitness.HasValue);
+            ClassicAssert.IsFalse(target.Fitness.HasValue);
         }
 
         [Test]
@@ -93,9 +94,9 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             target.ReplaceGene(1, new Gene(6));
 
             var actual = target.GetGenes();
-            Assert.AreEqual(2, actual.Length);
-            Assert.AreEqual(2, actual[0].Value);
-            Assert.AreEqual(6, actual[1].Value);
+            ClassicAssert.AreEqual(2, actual.Length);
+            ClassicAssert.AreEqual(2, actual[0].Value);
+            ClassicAssert.AreEqual(6, actual[1].Value);
         }
 
         [Test]
@@ -133,27 +134,27 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             target.ReplaceGenes(0, new Gene[] { new Gene(1), new Gene(2) });
 
             var actual = target.GetGenes();
-            Assert.AreEqual(4, actual.Length);
-            Assert.AreEqual(1, actual[0].Value);
-            Assert.AreEqual(2, actual[1].Value);
+            ClassicAssert.AreEqual(4, actual.Length);
+            ClassicAssert.AreEqual(1, actual[0].Value);
+            ClassicAssert.AreEqual(2, actual[1].Value);
 
             target.ReplaceGenes(2, new Gene[] { new Gene(3), new Gene(4) });
 
             actual = target.GetGenes();
-            Assert.AreEqual(4, actual.Length);
-            Assert.AreEqual(1, actual[0].Value);
-            Assert.AreEqual(2, actual[1].Value);
-            Assert.AreEqual(3, actual[2].Value);
-            Assert.AreEqual(4, actual[3].Value);
+            ClassicAssert.AreEqual(4, actual.Length);
+            ClassicAssert.AreEqual(1, actual[0].Value);
+            ClassicAssert.AreEqual(2, actual[1].Value);
+            ClassicAssert.AreEqual(3, actual[2].Value);
+            ClassicAssert.AreEqual(4, actual[3].Value);
 
             target.ReplaceGenes(3, new Gene[] { new Gene(5) });
 
             actual = target.GetGenes();
-            Assert.AreEqual(4, actual.Length);
-            Assert.AreEqual(1, actual[0].Value);
-            Assert.AreEqual(2, actual[1].Value);
-            Assert.AreEqual(3, actual[2].Value);
-            Assert.AreEqual(5, actual[3].Value);
+            ClassicAssert.AreEqual(4, actual.Length);
+            ClassicAssert.AreEqual(1, actual[0].Value);
+            ClassicAssert.AreEqual(2, actual[1].Value);
+            ClassicAssert.AreEqual(3, actual[2].Value);
+            ClassicAssert.AreEqual(5, actual[3].Value);
         }
 
         [Test]
@@ -180,9 +181,9 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             });
 
             target.Resize(2);
-            Assert.AreEqual(2, target.Length);
-            Assert.AreEqual(1, target.GetGene(0).Value);
-            Assert.AreEqual(2, target.GetGene(1).Value);
+            ClassicAssert.AreEqual(2, target.Length);
+            ClassicAssert.AreEqual(1, target.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, target.GetGene(1).Value);
         }
 
         [Test]
@@ -196,18 +197,18 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             });
 
             target.Resize(4);
-            Assert.AreEqual(4, target.Length);
-            Assert.AreEqual(1, target.GetGene(0).Value);
-            Assert.AreEqual(2, target.GetGene(1).Value);
-            Assert.IsNull(target.GetGene(2).Value);
-            Assert.IsNull(target.GetGene(3).Value);
+            ClassicAssert.AreEqual(4, target.Length);
+            ClassicAssert.AreEqual(1, target.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, target.GetGene(1).Value);
+            ClassicAssert.IsNull(target.GetGene(2).Value);
+            ClassicAssert.IsNull(target.GetGene(3).Value);
         }
 
         [Test]
         public void Equals_NotChromosome_False()
         {
             var target = new ChromosomeStub();
-            Assert.IsFalse(target.Equals(1));
+            ClassicAssert.IsFalse(target.Equals(1));
         }
 
         [Test]
@@ -215,7 +216,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new ChromosomeStub();
             target.Fitness = null;
-            Assert.AreEqual(0, target.GetHashCode());
+            ClassicAssert.AreEqual(0, target.GetHashCode());
         }
 
         [Test]
@@ -223,7 +224,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new ChromosomeStub();
             target.Fitness = 123;
-            Assert.AreEqual(target.Fitness.GetHashCode(), target.GetHashCode());
+            ClassicAssert.AreEqual(target.Fitness.GetHashCode(), target.GetHashCode());
         }
 
         [Test]
@@ -232,7 +233,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = first;
 
-            Assert.IsTrue(first == second);
+            ClassicAssert.IsTrue(first == second);
         }
 
         [Test]
@@ -241,8 +242,8 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(1.0);
 
-            Assert.IsFalse(null == second);
-            Assert.IsFalse(first == null);
+            ClassicAssert.IsFalse(null == second);
+            ClassicAssert.IsFalse(first == null);
         }
 
         [Test]
@@ -251,7 +252,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsFalse(first == second);
+            ClassicAssert.IsFalse(first == second);
         }
 
         [Test]
@@ -260,7 +261,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(1.0);
 
-            Assert.IsTrue(first == second);
+            ClassicAssert.IsTrue(first == second);
         }
 
         [Test]
@@ -269,7 +270,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(1.0);
 
-            Assert.IsFalse(first != second);
+            ClassicAssert.IsFalse(first != second);
         }
 
         [Test]
@@ -278,7 +279,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsTrue(first != second);
+            ClassicAssert.IsTrue(first != second);
         }
 
         [Test]
@@ -287,7 +288,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = first;
 
-            Assert.IsFalse(first < second);
+            ClassicAssert.IsFalse(first < second);
         }
 
         [Test]
@@ -295,7 +296,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsTrue(null < second);
+            ClassicAssert.IsTrue(null < second);
         }
 
         [Test]
@@ -303,7 +304,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var first = new ChromosomeStub(2.0);
 
-            Assert.IsFalse(first < null);
+            ClassicAssert.IsFalse(first < null);
         }
 
         [Test]
@@ -312,7 +313,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(3.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsFalse(first < second);
+            ClassicAssert.IsFalse(first < second);
         }
 
         [Test]
@@ -321,7 +322,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(1.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsTrue(first < second);
+            ClassicAssert.IsTrue(first < second);
         }
 
         [Test]
@@ -330,8 +331,8 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(3.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsTrue(first > second);
-            Assert.IsFalse(second > first);
+            ClassicAssert.IsTrue(first > second);
+            ClassicAssert.IsFalse(second > first);
         }
 
         [Test]
@@ -340,8 +341,8 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var first = new ChromosomeStub(2.0);
             var second = new ChromosomeStub(2.0);
 
-            Assert.IsFalse(first > second);
-            Assert.IsFalse(second > first);
+            ClassicAssert.IsFalse(first > second);
+            ClassicAssert.IsFalse(second > first);
         }
     }
 }

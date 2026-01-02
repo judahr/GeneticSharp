@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 {
@@ -18,8 +19,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             target.Add(() => pipeline += "2");
             target.Add(() => pipeline += "3");
 
-            Assert.IsTrue(target.Start());
-            Assert.AreEqual("123", pipeline);
+            ClassicAssert.IsTrue(target.Start());
+            ClassicAssert.AreEqual("123", pipeline);
         }
 
         [Test()]
@@ -36,8 +37,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             target.Add(() => pipeline += "3");
 
             target.Timeout = TimeSpan.FromMilliseconds(100);
-            Assert.IsFalse(target.Start());
-            Assert.AreEqual("12", pipeline);
+            ClassicAssert.IsFalse(target.Start());
+            ClassicAssert.AreEqual("12", pipeline);
         }
 
         [Test()]
@@ -54,7 +55,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             target.Add(() => pipeline += "3");
 
             Parallel.Invoke(
-                () => Assert.IsTrue(target.Start()),
+                () => ClassicAssert.IsTrue(target.Start()),
                 () =>
                 {
                     Thread.Sleep(5);

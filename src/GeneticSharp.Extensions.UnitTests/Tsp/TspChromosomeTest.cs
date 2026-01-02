@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Tsp
 {
@@ -21,7 +22,7 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
         {
             var target = new TspChromosome(10);
             var cityIndex = Convert.ToDouble(target.GenerateGene(0).Value);
-            Assert.IsTrue(cityIndex >= 0 && cityIndex < 10);
+            ClassicAssert.IsTrue(cityIndex >= 0 && cityIndex < 10);
         }
 
         [Test()]
@@ -30,7 +31,7 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
             var target = new TspChromosome(10);
          
             var actual = target.Clone() as TspChromosome;
-            Assert.IsFalse(Object.ReferenceEquals(target, actual));
+            ClassicAssert.IsFalse(Object.ReferenceEquals(target, actual));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Fitnesses
 {
@@ -13,7 +14,7 @@ namespace GeneticSharp.Domain.UnitTests.Fitnesses
                 return c.Fitness.Value + 1;
             });
 
-            Assert.AreEqual(3, target.Evaluate(new ChromosomeStub(2d)));
+            ClassicAssert.AreEqual(3, target.Evaluate(new ChromosomeStub(2d)));
         }
     }
 }

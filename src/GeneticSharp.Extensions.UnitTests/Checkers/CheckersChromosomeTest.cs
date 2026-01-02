@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Checkers
 {
@@ -13,8 +14,8 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             var target = new CheckersChromosome(2, 10);
 
             var actual = target.Clone() as CheckersChromosome;
-            Assert.IsFalse(Object.ReferenceEquals(target, actual));
-            Assert.AreEqual(2, actual.Moves.Count);
+            ClassicAssert.IsFalse(Object.ReferenceEquals(target, actual));
+            ClassicAssert.AreEqual(2, actual.Moves.Count);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Crossovers
 {
@@ -45,19 +46,19 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2 });
 
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(2, actual[0].Length);
-            Assert.AreEqual(6, actual[1].Length);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(2, actual[0].Length);
+            ClassicAssert.AreEqual(6, actual[1].Length);
 
-            Assert.AreEqual(1, actual[0].GetGene(0).Value);
-            Assert.AreEqual(2, actual[0].GetGene(1).Value);
+            ClassicAssert.AreEqual(1, actual[0].GetGene(0).Value);
+            ClassicAssert.AreEqual(2, actual[0].GetGene(1).Value);
 
-            Assert.AreEqual(5, actual[1].GetGene(0).Value);
-            Assert.AreEqual(6, actual[1].GetGene(1).Value);
-            Assert.AreEqual(7, actual[1].GetGene(2).Value);
-            Assert.AreEqual(8, actual[1].GetGene(3).Value);
-            Assert.AreEqual(3, actual[1].GetGene(4).Value);
-            Assert.AreEqual(4, actual[1].GetGene(5).Value);
+            ClassicAssert.AreEqual(5, actual[1].GetGene(0).Value);
+            ClassicAssert.AreEqual(6, actual[1].GetGene(1).Value);
+            ClassicAssert.AreEqual(7, actual[1].GetGene(2).Value);
+            ClassicAssert.AreEqual(8, actual[1].GetGene(3).Value);
+            ClassicAssert.AreEqual(3, actual[1].GetGene(4).Value);
+            ClassicAssert.AreEqual(4, actual[1].GetGene(5).Value);
         }
 
         [Test]
@@ -93,20 +94,20 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2 });
 
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(5, actual[0].Length);
-            Assert.AreEqual(4, actual[1].Length);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(5, actual[0].Length);
+            ClassicAssert.AreEqual(4, actual[1].Length);
 
-            Assert.AreEqual(1, actual[0].GetGene(0).Value);
-            Assert.AreEqual(2, actual[0].GetGene(1).Value);
-            Assert.AreEqual(3, actual[0].GetGene(2).Value);
-            Assert.AreEqual(8, actual[0].GetGene(3).Value);
-            Assert.AreEqual(9, actual[0].GetGene(4).Value);
+            ClassicAssert.AreEqual(1, actual[0].GetGene(0).Value);
+            ClassicAssert.AreEqual(2, actual[0].GetGene(1).Value);
+            ClassicAssert.AreEqual(3, actual[0].GetGene(2).Value);
+            ClassicAssert.AreEqual(8, actual[0].GetGene(3).Value);
+            ClassicAssert.AreEqual(9, actual[0].GetGene(4).Value);
 
-            Assert.AreEqual(5, actual[1].GetGene(0).Value);
-            Assert.AreEqual(6, actual[1].GetGene(1).Value);
-            Assert.AreEqual(7, actual[1].GetGene(2).Value);
-            Assert.AreEqual(4, actual[1].GetGene(3).Value);
+            ClassicAssert.AreEqual(5, actual[1].GetGene(0).Value);
+            ClassicAssert.AreEqual(6, actual[1].GetGene(1).Value);
+            ClassicAssert.AreEqual(7, actual[1].GetGene(2).Value);
+            ClassicAssert.AreEqual(4, actual[1].GetGene(3).Value);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Crossovers
 {
@@ -52,13 +53,13 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             var target = new ThreeParentCrossover();
 
             var actual = target.Cross(parents);
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual(4, actual[0].Length);
+            ClassicAssert.AreEqual(1, actual.Count);
+            ClassicAssert.AreEqual(4, actual[0].Length);
 
-            Assert.AreEqual(1, actual[0].GetGene(0).Value);
-            Assert.AreEqual(11, actual[0].GetGene(1).Value);
-            Assert.AreEqual(12, actual[0].GetGene(2).Value);
-            Assert.AreEqual(4, actual[0].GetGene(3).Value);
+            ClassicAssert.AreEqual(1, actual[0].GetGene(0).Value);
+            ClassicAssert.AreEqual(11, actual[0].GetGene(1).Value);
+            ClassicAssert.AreEqual(12, actual[0].GetGene(2).Value);
+            ClassicAssert.AreEqual(4, actual[0].GetGene(3).Value);
         }
     }
 }

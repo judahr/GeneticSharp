@@ -1,5 +1,6 @@
 ﻿using GeneticSharp.Domain.UnitTests;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Sudoku
 {
@@ -11,10 +12,10 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
         public void Constructor_NoArgs_Length9()
         {
             var target = new SudokuRandomPermutationsChromosome();
-            Assert.AreEqual(9, target.Length);
+            ClassicAssert.AreEqual(9, target.Length);
 
             var genes = target.GetGenes();
-            Assert.AreEqual(9, genes.Length);
+            ClassicAssert.AreEqual(9, genes.Length);
         }
 
         ///// <summary>
@@ -31,7 +32,7 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
         //    var fitness1 = new SudokuFitness(sudoku).Evaluate((ISudokuChromosome)chromosome);
         //    var targetFitness = Math.Min(0, fitness1 + 10);
         //    var fitness2 = SudokuTestHelper.Eval(chromosome, sudoku, 5, targetFitness, 3);
-        //    Assert.GreaterOrEqual(fitness2, targetFitness);
+        //    ClassicAssert.GreaterOrEqual(fitness2, targetFitness);
 
         //}
 
@@ -48,7 +49,7 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
 
                 IChromosome chromosome = new SudokuRandomPermutationsChromosome(sudoku, 2, 3);
                 var fitness = SudokuTestHelper.Eval(chromosome, sudoku, 50, 0, 100);
-                Assert.AreEqual(0, fitness);
+                ClassicAssert.AreEqual(0, fitness);
             });
         }
 
@@ -63,7 +64,7 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
             {
                 IChromosome chromosome = new SudokuPermutationsChromosome(sudoku);
                 var fitness = SudokuTestHelper.Eval(chromosome, sudoku, 1000, 0, 40);
-                Assert.AreEqual(0, fitness);
+                ClassicAssert.AreEqual(0, fitness);
             });
         }
 

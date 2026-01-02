@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -14,40 +15,40 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         public void Constructor_NoArgs_DefaultValue()
         {
             var target = new SelectionException();
-            Assert.IsTrue(target.Message.Contains("SelectionException"));
+            ClassicAssert.IsTrue(target.Message.Contains("SelectionException"));
         }
 
         [Test]
         public void Constructor_Message_Message()
         {
             var target = new SelectionException("1");
-            Assert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("1", target.Message);
         }
 
         [Test]
         public void Constructor_MessageAndInnerException_MessageAndInnerExcetion()
         {
             var target = new SelectionException("1", new Exception("2"));
-            Assert.AreEqual("1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
         public void Constructor_SelectionAndMessage_SelectionAndMessage([Values] bool nullSelection)
         {
             var target = new SelectionException(nullSelection ? null : Substitute.For<ISelection>(), "1");
-            Assert.AreEqual(nullSelection, target.Selection == null);
-            Assert.AreEqual(nullSelection ? ": 1" : $"{target.Selection.GetType().Name}: 1", target.Message);
-            Assert.IsNull(target.InnerException);
+            ClassicAssert.AreEqual(nullSelection, target.Selection == null);
+            ClassicAssert.AreEqual(nullSelection ? ": 1" : $"{target.Selection.GetType().Name}: 1", target.Message);
+            ClassicAssert.IsNull(target.InnerException);
         }
 
         [Test]
         public void Constructor_SelectionAndMessageAndInnerException_SelectionAndMessageAndInnerExcetion([Values] bool nullSelection)
         {
             var target = new SelectionException(nullSelection ? null : Substitute.For<ISelection>(), "1", new Exception("2"));
-            Assert.AreEqual(nullSelection, target.Selection == null);
-            Assert.AreEqual(nullSelection ? ": 1" : $"{target.Selection.GetType().Name}: 1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual(nullSelection, target.Selection == null);
+            ClassicAssert.AreEqual(nullSelection ? ": 1" : $"{target.Selection.GetType().Name}: 1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
                 serializationInfo,
                 new StreamingContext() }) as SelectionException;
 
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var serializationInfo = new SerializationInfo(typeof(int), Substitute.For<IFormatterConverter>());
             target.GetObjectData(serializationInfo, new StreamingContext());
 
-            Assert.AreEqual(propertyValue, serializationInfo.GetValue("Selection", typeof(ISelection)));
+            ClassicAssert.AreEqual(propertyValue, serializationInfo.GetValue("Selection", typeof(ISelection)));
         }
     }
 }

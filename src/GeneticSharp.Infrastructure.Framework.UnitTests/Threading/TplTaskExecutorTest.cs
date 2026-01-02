@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 {
@@ -30,8 +31,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.IsTrue(actual);
-            Assert.AreEqual("132", pipeline);
+            ClassicAssert.IsTrue(actual);
+            ClassicAssert.AreEqual("132", pipeline);
         }
 
         [Test]
@@ -55,8 +56,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.IsTrue(actual);
-            Assert.AreEqual("132", pipeline);
+            ClassicAssert.IsTrue(actual);
+            ClassicAssert.AreEqual("132", pipeline);
         }
 
 
@@ -76,8 +77,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.AreEqual(expectedCompleted, actual);
-            Assert.AreEqual("12", pipeline);
+            ClassicAssert.AreEqual(expectedCompleted, actual);
+            ClassicAssert.AreEqual("12", pipeline);
         }
 
         [Test]
@@ -131,7 +132,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             Parallel.Invoke(
-                () => Assert.IsTrue(target.Start()),
+                () => ClassicAssert.IsTrue(target.Start()),
                 () =>
                 {
                     //The tasks should be completed when stop is invoked.
@@ -173,7 +174,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
                     target.Stop();
                 });
 
-            Assert.IsFalse(target.IsRunning);
+            ClassicAssert.IsFalse(target.IsRunning);
         }
 
         [Test]
@@ -215,7 +216,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             }).Wait();
 
             otherThread.Stop();
-            Assert.GreaterOrEqual(otherThreadCount, 2);
+            ClassicAssert.GreaterOrEqual(otherThreadCount, 2);
         }
 
         [Test]
@@ -240,8 +241,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 
             target.Stop();
             var actual = target.Start();
-            Assert.IsTrue(actual);
-            Assert.AreEqual("132", pipeline);
+            ClassicAssert.IsTrue(actual);
+            ClassicAssert.AreEqual("132", pipeline);
         }
 
         [Test]        
@@ -262,8 +263,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             }
        
             var actual = target.Start();
-            Assert.IsFalse(actual);
-            Assert.Less(pipeline, 10);
+            ClassicAssert.IsFalse(actual);
+            ClassicAssert.Less(pipeline, 10);
         }
     }
 }

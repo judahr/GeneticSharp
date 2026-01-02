@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Randomizations
 {
@@ -14,7 +15,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
             for (int i = 0; i < 10; i++)
             {
                 var actual = rnd.GetEvenInt(0, 10);
-                Assert.IsTrue(actual % 2 == 0);
+                ClassicAssert.IsTrue(actual % 2 == 0);
             }
         }
 
@@ -27,7 +28,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
             for (int i = 0; i < 10; i++)
             {
                 var actual = rnd.GetOddInt(0, 10);
-                Assert.IsTrue(actual % 2 != 0);
+                ClassicAssert.IsTrue(actual % 2 != 0);
             }
         }
     }

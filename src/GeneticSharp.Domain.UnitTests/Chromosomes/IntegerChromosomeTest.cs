@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -13,10 +14,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             RandomizationProvider.Current.GetInt (0, 3).Returns (2);
 
             var target = new IntegerChromosome (0, 3);
-            Assert.AreEqual("00000000000000000000000000000010", target.ToString());
+            ClassicAssert.AreEqual("00000000000000000000000000000010", target.ToString());
 
             var actual = target.ToInteger();
-            Assert.AreEqual (2, actual);            
+            ClassicAssert.AreEqual (2, actual);            
         }
 
         [Test]
@@ -26,10 +27,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             RandomizationProvider.Current.GetInt(0, 3).Returns(-2);
 
             var target = new IntegerChromosome(0, 3);
-            Assert.AreEqual("11111111111111111111111111111110", target.ToString());
+            ClassicAssert.AreEqual("11111111111111111111111111111110", target.ToString());
 
             var actual = target.ToInteger();
-            Assert.AreEqual(-2, actual);
+            ClassicAssert.AreEqual(-2, actual);
         }
 
         [Test]
@@ -41,11 +42,11 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var old = new IntegerChromosome(0, 3);
             var target = old.CreateNew() as IntegerChromosome;
 
-            Assert.AreNotSame(old, target);
-            Assert.AreEqual("11111111111111111111111111111110", target.ToString());
+            ClassicAssert.AreNotSame(old, target);
+            ClassicAssert.AreEqual("11111111111111111111111111111110", target.ToString());
 
             var actual = target.ToInteger();
-            Assert.AreEqual(-2, actual);
+            ClassicAssert.AreEqual(-2, actual);
         }
 
         [Test]
@@ -55,22 +56,22 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             RandomizationProvider.Current.GetInt(0, 3).Returns(-2);
 
             var target = new IntegerChromosome(0, 3);
-            Assert.AreEqual("11111111111111111111111111111110", target.ToString());
+            ClassicAssert.AreEqual("11111111111111111111111111111110", target.ToString());
 
             target.FlipGene(0);
-            Assert.AreEqual("01111111111111111111111111111110", target.ToString());
+            ClassicAssert.AreEqual("01111111111111111111111111111110", target.ToString());
 
             target.FlipGene(1);
-            Assert.AreEqual("00111111111111111111111111111110", target.ToString());
+            ClassicAssert.AreEqual("00111111111111111111111111111110", target.ToString());
 
             target.FlipGene(10);
-            Assert.AreEqual("00111111110111111111111111111110", target.ToString());
+            ClassicAssert.AreEqual("00111111110111111111111111111110", target.ToString());
 
             target.FlipGene(31);
-            Assert.AreEqual("00111111110111111111111111111111", target.ToString());
+            ClassicAssert.AreEqual("00111111110111111111111111111111", target.ToString());
 
             target.FlipGene(30);
-            Assert.AreEqual("00111111110111111111111111111101", target.ToString());
+            ClassicAssert.AreEqual("00111111110111111111111111111101", target.ToString());
         }
     }
 }

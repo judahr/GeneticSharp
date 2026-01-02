@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using NSubstitute;
 using System;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Crossovers
 {
@@ -86,17 +87,17 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
        
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2, chromosome3, chromosome4 });
 
-            Assert.AreEqual(1, actual.Count);
+            ClassicAssert.AreEqual(1, actual.Count);
             var actualChild = actual[0];
 
-            Assert.AreEqual(6, actualChild.Length);
+            ClassicAssert.AreEqual(6, actualChild.Length);
          
-            Assert.AreEqual(1, actualChild.GetGene(0).Value);
-            Assert.AreEqual(2, actualChild.GetGene(1).Value);
-            Assert.AreEqual(22, actualChild.GetGene(2).Value);
-            Assert.AreEqual(33, actualChild.GetGene(3).Value);
-            Assert.AreEqual(44, actualChild.GetGene(4).Value);
-            Assert.AreEqual(6, actualChild.GetGene(5).Value);
+            ClassicAssert.AreEqual(1, actualChild.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, actualChild.GetGene(1).Value);
+            ClassicAssert.AreEqual(22, actualChild.GetGene(2).Value);
+            ClassicAssert.AreEqual(33, actualChild.GetGene(3).Value);
+            ClassicAssert.AreEqual(44, actualChild.GetGene(4).Value);
+            ClassicAssert.AreEqual(6, actualChild.GetGene(5).Value);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Mathematic
 {
@@ -10,18 +11,18 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
         public void BuildAvailableOperations_ParametersCount_AvailableOperations()
         {
             var actual = FunctionBuilderChromosome.BuildAvailableOperations(4);
-            Assert.AreEqual(10, actual.Count);
+            ClassicAssert.AreEqual(10, actual.Count);
 
-            Assert.AreEqual("", actual[0]);
-            Assert.AreEqual("+", actual[1]);
-            Assert.AreEqual("-", actual[2]);
-            Assert.AreEqual("/", actual[3]);
-            Assert.AreEqual("*", actual[4]);
-            Assert.AreEqual("__INT__", actual[5]);
-            Assert.AreEqual("A", actual[6]);
-            Assert.AreEqual("B", actual[7]);
-            Assert.AreEqual("C", actual[8]);
-            Assert.AreEqual("D", actual[9]);
+            ClassicAssert.AreEqual("", actual[0]);
+            ClassicAssert.AreEqual("+", actual[1]);
+            ClassicAssert.AreEqual("-", actual[2]);
+            ClassicAssert.AreEqual("/", actual[3]);
+            ClassicAssert.AreEqual("*", actual[4]);
+            ClassicAssert.AreEqual("__INT__", actual[5]);
+            ClassicAssert.AreEqual("A", actual[6]);
+            ClassicAssert.AreEqual("B", actual[7]);
+            ClassicAssert.AreEqual("C", actual[8]);
+            ClassicAssert.AreEqual("D", actual[9]);
         }
     }
 }

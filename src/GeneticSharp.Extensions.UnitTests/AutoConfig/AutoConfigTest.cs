@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.AutoConfig
 {
@@ -40,7 +41,7 @@ namespace GeneticSharp.Extensions.UnitTests.AutoConfig
             ga.Termination = new GenerationNumberTermination(10);
             ga.Start();
 
-            Assert.NotNull(ga.BestChromosome);            
+            ClassicAssert.NotNull(ga.BestChromosome);            
         }
 
         [Test()]
@@ -49,7 +50,7 @@ namespace GeneticSharp.Extensions.UnitTests.AutoConfig
             var target = new AutoConfigChromosome();
 
             var actual = Assert.Catch(() => target.GenerateGene(9));
-            Assert.AreEqual("Invalid AutoConfigChromosome gene index.", actual.Message);
+            ClassicAssert.AreEqual("Invalid AutoConfigChromosome gene index.", actual.Message);
         }
     }
 }

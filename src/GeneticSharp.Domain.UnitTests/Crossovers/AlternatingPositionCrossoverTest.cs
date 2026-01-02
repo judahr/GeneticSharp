@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using GeneticSharp.Domain.UnitTests.Crossovers.Issues;
 using GeneticSharp.Extensions;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Crossovers
 {
@@ -92,32 +93,32 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2 });
 
-            Assert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(2, actual.Count);
 
             // 1 3 2 7 5 4 6 8
             var actualChild = actual[0];
-            Assert.AreEqual(8, actualChild.Length);
+            ClassicAssert.AreEqual(8, actualChild.Length);
            
-            Assert.AreEqual(1, actualChild.GetGene(0).Value);
-            Assert.AreEqual(3, actualChild.GetGene(1).Value);
-            Assert.AreEqual(2, actualChild.GetGene(2).Value);
-            Assert.AreEqual(7, actualChild.GetGene(3).Value);
-            Assert.AreEqual(5, actualChild.GetGene(4).Value);
-            Assert.AreEqual(4, actualChild.GetGene(5).Value);
-            Assert.AreEqual(6, actualChild.GetGene(6).Value);
-            Assert.AreEqual(8, actualChild.GetGene(7).Value);
+            ClassicAssert.AreEqual(1, actualChild.GetGene(0).Value);
+            ClassicAssert.AreEqual(3, actualChild.GetGene(1).Value);
+            ClassicAssert.AreEqual(2, actualChild.GetGene(2).Value);
+            ClassicAssert.AreEqual(7, actualChild.GetGene(3).Value);
+            ClassicAssert.AreEqual(5, actualChild.GetGene(4).Value);
+            ClassicAssert.AreEqual(4, actualChild.GetGene(5).Value);
+            ClassicAssert.AreEqual(6, actualChild.GetGene(6).Value);
+            ClassicAssert.AreEqual(8, actualChild.GetGene(7).Value);
 
             // 3 1 7 2 5 4 6 8
             actualChild = actual[1];
-            Assert.AreEqual(8, actualChild.Length);
-            Assert.AreEqual(3, actualChild.GetGene(0).Value);
-            Assert.AreEqual(1, actualChild.GetGene(1).Value);
-            Assert.AreEqual(7, actualChild.GetGene(2).Value);
-            Assert.AreEqual(2, actualChild.GetGene(3).Value);
-            Assert.AreEqual(5, actualChild.GetGene(4).Value);
-            Assert.AreEqual(4, actualChild.GetGene(5).Value);
-            Assert.AreEqual(6, actualChild.GetGene(6).Value);
-            Assert.AreEqual(8, actualChild.GetGene(7).Value);
+            ClassicAssert.AreEqual(8, actualChild.Length);
+            ClassicAssert.AreEqual(3, actualChild.GetGene(0).Value);
+            ClassicAssert.AreEqual(1, actualChild.GetGene(1).Value);
+            ClassicAssert.AreEqual(7, actualChild.GetGene(2).Value);
+            ClassicAssert.AreEqual(2, actualChild.GetGene(3).Value);
+            ClassicAssert.AreEqual(5, actualChild.GetGene(4).Value);
+            ClassicAssert.AreEqual(4, actualChild.GetGene(5).Value);
+            ClassicAssert.AreEqual(6, actualChild.GetGene(6).Value);
+            ClassicAssert.AreEqual(8, actualChild.GetGene(7).Value);
         }
 
         [Test]
@@ -129,7 +130,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             var chromosome2 = new TspChromosome(100);
             var actual = target.Cross(new TspChromosome[] { chromosome1, chromosome2 });
 
-            Assert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(2, actual.Count);
 
             CollectionAssert.AllItemsAreUnique(chromosome1.GetGenes());
             CollectionAssert.AllItemsAreUnique(chromosome2.GetGenes());
@@ -153,7 +154,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             ga.Start();
           
-            Assert.Less(
+            ClassicAssert.Less(
                 population.Generations.First().BestChromosome.Fitness.Value,
                 population.Generations.Last().BestChromosome.Fitness.Value);
         }
@@ -186,7 +187,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 foreach(var chromossome in gen.Chromosomes)
                 {
                     // Asserts if AlternatingPositionCrossover generated only ordered chromossomes.
-                    Assert.AreEqual(chromosome.Length, chromosome.GetGenes().Distinct().Count());
+                    ClassicAssert.AreEqual(chromosome.Length, chromosome.GetGenes().Distinct().Count());
                 }
             }
         }

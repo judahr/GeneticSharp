@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Populations
 {
@@ -19,17 +20,17 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         {
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
-                new Population(-1, 1, null);
+                new Population(-1, 1, (IChromosome)null);
             }, "The minimum size for a population is 2 chromosomes.");
 
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
-                new Population(0, 1, null);
+                new Population(0, 1, (IChromosome)null);
             }, "The minimum size for a population is 2 chromosomes.");
 
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
-                new Population(1, 1, null);
+                new Population(1, 1, (IChromosome)null);
             }, "The minimum size for a population is 2 chromosomes.");
         }
 
@@ -38,7 +39,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         {
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
-                new Population(2, 1, null);
+                new Population(2, 1, (IChromosome)null);
             }, "The maximum size for a population should be equal or greater than minimum size.");
         }
 
@@ -47,10 +48,10 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         {
             var actual = Assert.Catch<ArgumentNullException>(() =>
             {
-                new Population(2, 2, null);
+                new Population(2, 2, (IChromosome)null);
             });
 
-            Assert.AreEqual("adamChromosome", actual.ParamName);
+            ClassicAssert.AreEqual("adamChromosome", actual.ParamName);
         }
 
         [Test]
@@ -80,7 +81,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
             target.CurrentGeneration.Chromosomes.Each(c => c.Fitness = 1);
             target.EndCurrentGeneration();
 
-            Assert.IsTrue(eventRaise);
+            ClassicAssert.IsTrue(eventRaise);
         }
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
             target.CurrentGeneration.Chromosomes[0].Fitness = 1;            
             target.EndCurrentGeneration();
 
-            Assert.IsTrue(eventRaise);
+            ClassicAssert.IsTrue(eventRaise);
         }
     }
 }

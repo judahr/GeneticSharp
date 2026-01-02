@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests
 {
@@ -38,7 +39,7 @@ namespace GeneticSharp.Domain.UnitTests
                 }
             }
 
-            Assert.IsTrue(ok);
+            ClassicAssert.IsTrue(ok);
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace GeneticSharp.Domain.UnitTests
                 }
             }
 
-            Assert.IsTrue(ok, $"All {maxAttempts} attempts failed\n\n{failedMessage}");
+            ClassicAssert.IsTrue(ok, $"All {maxAttempts} attempts failed\n\n{failedMessage}");
         }
     }
 }

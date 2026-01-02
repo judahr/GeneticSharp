@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Texts
 {
@@ -8,13 +9,13 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Texts
         [Test()]
         public void RemovePunctuations_Punctuations_CleanString()
         {
-            Assert.AreEqual("`1234567890-=qwertyuiop\\asdfghjklzxcvbnm/", "`1234567890-=q!wer?tyuiop,[]\\asdfghjkl;\'zxcvbnm,./".RemovePunctuations());
+            ClassicAssert.AreEqual("`1234567890-=qwertyuiop\\asdfghjklzxcvbnm/", "`1234567890-=q!wer?tyuiop,[]\\asdfghjkl;\'zxcvbnm,./".RemovePunctuations());
         }
 
         [Test()]
         public void With_SourceAndArgs_Formatted()
         {
-            Assert.AreEqual("A1b2", "A{0}b{1}".With(1, 2));
+            ClassicAssert.AreEqual("A1b2", "A{0}b{1}".With(1, 2));
         }
     }
 }

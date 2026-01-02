@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Populations
 {
@@ -18,9 +19,9 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         {
             var actual = PopulationService.GetGenerationStrategyTypes();
 
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(typeof(PerformanceGenerationStrategy), actual[0]);
-            Assert.AreEqual(typeof(TrackingGenerationStrategy), actual[1]);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(typeof(PerformanceGenerationStrategy), actual[0]);
+            ClassicAssert.AreEqual(typeof(TrackingGenerationStrategy), actual[1]);
         }
 
         [Test()]
@@ -28,9 +29,9 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         {
             var actual = PopulationService.GetGenerationStrategyNames();
 
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual("Performance", actual[0]);
-            Assert.AreEqual("Tracking", actual[1]);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual("Performance", actual[0]);
+            ClassicAssert.AreEqual("Tracking", actual[1]);
         }
 
         [Test()]
@@ -55,10 +56,10 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         public void CreateGenerationStrategyByName_ValidName_GenerationStrategyCreated()
         {
             IGenerationStrategy actual = PopulationService.CreateGenerationStrategyByName("Performance", 1) as PerformanceGenerationStrategy;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = PopulationService.CreateGenerationStrategyByName("Tracking") as TrackingGenerationStrategy;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
         }
 
         [Test()]
@@ -74,10 +75,10 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         public void GetGenerationStrategyTypeByName_ValidName_GenerationStrategyTpe()
         {
             var actual = PopulationService.GetGenerationStrategyTypeByName("Performance");
-            Assert.AreEqual(typeof(PerformanceGenerationStrategy), actual);
+            ClassicAssert.AreEqual(typeof(PerformanceGenerationStrategy), actual);
 
             actual = PopulationService.GetGenerationStrategyTypeByName("Tracking");
-            Assert.AreEqual(typeof(TrackingGenerationStrategy), actual);
+            ClassicAssert.AreEqual(typeof(TrackingGenerationStrategy), actual);
         }
     }
 }

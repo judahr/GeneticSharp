@@ -1,6 +1,7 @@
 ﻿using System;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Mutations
 {
@@ -13,14 +14,14 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         {
             var actual = MutationService.GetMutationTypes();
 
-            Assert.AreEqual(7, actual.Count);
-            Assert.AreEqual(typeof(DisplacementMutation), actual[0]);
-            Assert.AreEqual(typeof(FlipBitMutation), actual[1]);
-            Assert.AreEqual(typeof(InsertionMutation), actual[2]);
-            Assert.AreEqual(typeof(PartialShuffleMutation), actual[3]);
-            Assert.AreEqual(typeof(ReverseSequenceMutation), actual[4]);
-            Assert.AreEqual(typeof(TworsMutation), actual[5]);
-            Assert.AreEqual(typeof(UniformMutation), actual[6]);
+            ClassicAssert.AreEqual(7, actual.Count);
+            ClassicAssert.AreEqual(typeof(DisplacementMutation), actual[0]);
+            ClassicAssert.AreEqual(typeof(FlipBitMutation), actual[1]);
+            ClassicAssert.AreEqual(typeof(InsertionMutation), actual[2]);
+            ClassicAssert.AreEqual(typeof(PartialShuffleMutation), actual[3]);
+            ClassicAssert.AreEqual(typeof(ReverseSequenceMutation), actual[4]);
+            ClassicAssert.AreEqual(typeof(TworsMutation), actual[5]);
+            ClassicAssert.AreEqual(typeof(UniformMutation), actual[6]);
         }
 
         [Test()]
@@ -28,14 +29,14 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         {
             var actual = MutationService.GetMutationNames();
 
-            Assert.AreEqual(7, actual.Count);
-            Assert.AreEqual("Displacement", actual[0]);
-            Assert.AreEqual("Flip Bit", actual[1]);
-            Assert.AreEqual("Insertion", actual[2]);
-            Assert.AreEqual("Partial Shuffle (PSM)", actual[3]);
-            Assert.AreEqual("Reverse Sequence (RSM)", actual[4]);
-            Assert.AreEqual("Twors", actual[5]);
-            Assert.AreEqual("Uniform", actual[6]);
+            ClassicAssert.AreEqual(7, actual.Count);
+            ClassicAssert.AreEqual("Displacement", actual[0]);
+            ClassicAssert.AreEqual("Flip Bit", actual[1]);
+            ClassicAssert.AreEqual("Insertion", actual[2]);
+            ClassicAssert.AreEqual("Partial Shuffle (PSM)", actual[3]);
+            ClassicAssert.AreEqual("Reverse Sequence (RSM)", actual[4]);
+            ClassicAssert.AreEqual("Twors", actual[5]);
+            ClassicAssert.AreEqual("Uniform", actual[6]);
         }
 
         [Test()]
@@ -60,13 +61,13 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void CreateMutationByName_ValidName_MutationCreated()
         {
             IMutation actual = MutationService.CreateMutationByName("Reverse Sequence (RSM)") as ReverseSequenceMutation;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = MutationService.CreateMutationByName("Twors") as TworsMutation;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = MutationService.CreateMutationByName("Uniform", true) as UniformMutation;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
         }
 
         [Test()]
@@ -82,13 +83,13 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void GetMutationTypeByName_ValidName_CrossoverTpe()
         {
             var actual = MutationService.GetMutationTypeByName("Reverse Sequence (RSM)");
-            Assert.AreEqual(typeof(ReverseSequenceMutation), actual);
+            ClassicAssert.AreEqual(typeof(ReverseSequenceMutation), actual);
 
             actual = MutationService.GetMutationTypeByName("Twors");
-            Assert.AreEqual(typeof(TworsMutation), actual);
+            ClassicAssert.AreEqual(typeof(TworsMutation), actual);
 
             actual = MutationService.GetMutationTypeByName("Uniform");
-            Assert.AreEqual(typeof(UniformMutation), actual);
+            ClassicAssert.AreEqual(typeof(UniformMutation), actual);
         }
 
         [Test()]

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -14,40 +15,40 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         public void Constructor_NoArgs_DefaultValue()
         {
             var target = new CrossoverException();
-            Assert.IsTrue(target.Message.Contains("CrossoverException"));
+            ClassicAssert.IsTrue(target.Message.Contains("CrossoverException"));
         }
 
         [Test]
         public void Constructor_Message_Message()
         {
             var target = new CrossoverException("1");
-            Assert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("1", target.Message);
         }
 
         [Test]
         public void Constructor_MessageAndInnerException_MessageAndInnerExcetion()
         {
             var target = new CrossoverException("1", new Exception("2"));
-            Assert.AreEqual("1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
         public void Constructor_CrossoverAndMessage_CrossoverAndMessage([Values] bool nullCrossover)
         {
             var target = new CrossoverException(nullCrossover ? null : Substitute.For<ICrossover>(), "1");
-            Assert.AreEqual(nullCrossover, target.Crossover == null);
-            Assert.AreEqual(nullCrossover ? ": 1" : $"{target.Crossover.GetType().Name}: 1", target.Message);
-            Assert.IsNull(target.InnerException);
+            ClassicAssert.AreEqual(nullCrossover, target.Crossover == null);
+            ClassicAssert.AreEqual(nullCrossover ? ": 1" : $"{target.Crossover.GetType().Name}: 1", target.Message);
+            ClassicAssert.IsNull(target.InnerException);
         }
 
         [Test]
         public void Constructor_CrossoverAndMessageAndInnerException_CrossoverAndMessageAndInnerExcetion([Values] bool nullCrossover)
         {
             var target = new CrossoverException(nullCrossover ? null : Substitute.For<ICrossover>(), "1", new Exception("2"));
-            Assert.AreEqual(nullCrossover, target.Crossover == null);
-            Assert.AreEqual(nullCrossover ? ": 1" : $"{target.Crossover.GetType().Name}: 1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual(nullCrossover, target.Crossover == null);
+            ClassicAssert.AreEqual(nullCrossover ? ": 1" : $"{target.Crossover.GetType().Name}: 1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
                 serializationInfo,
                 new StreamingContext() }) as CrossoverException;
 
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var serializationInfo = new SerializationInfo(typeof(int), Substitute.For<IFormatterConverter>());
             target.GetObjectData(serializationInfo, new StreamingContext());
 
-            Assert.AreEqual(propertyValue, serializationInfo.GetValue("Crossover", typeof(ICrossover)));
+            ClassicAssert.AreEqual(propertyValue, serializationInfo.GetValue("Crossover", typeof(ICrossover)));
         }
     }
 }

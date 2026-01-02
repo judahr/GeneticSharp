@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -13,10 +14,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             RandomizationProvider.Current.GetDouble(0.5, 2.5).Returns(1.1);
 
             var target = new FloatingPointChromosome(0.5, 2.5, 64, 2);
-            Assert.AreEqual("0000000000000000000000000000000000000000000000000000000001101110", target.ToString());
+            ClassicAssert.AreEqual("0000000000000000000000000000000000000000000000000000000001101110", target.ToString());
 
             var actual = target.ToFloatingPoint();
-            Assert.AreEqual(1.1, actual);
+            ClassicAssert.AreEqual(1.1, actual);
         }
 
         [Test]
@@ -26,10 +27,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             RandomizationProvider.Current.GetDouble(-2.5, 0.5).Returns(-1.1);
 
             var target = new FloatingPointChromosome(-2.5, 0.5, 64, 2);
-            Assert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", target.ToString());
+            ClassicAssert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", target.ToString());
 
             var actual = target.ToFloatingPoint();
-            Assert.AreEqual(-1.1, actual);
+            ClassicAssert.AreEqual(-1.1, actual);
         }
 
         [Test]
@@ -42,10 +43,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var target = new FloatingPointChromosome(new double[] { 0, 1, 2 }, new double[] { 10, 11, 12 }, new int[] { 8, 8, 8 }, new int[] { 0, 0, 0 });
             var actual = target.ToFloatingPoints();
 
-            Assert.AreEqual(3, actual.Length);
-            Assert.AreEqual(1, actual[0]);
-            Assert.AreEqual(2, actual[1]);
-            Assert.AreEqual(3, actual[2]);
+            ClassicAssert.AreEqual(3, actual.Length);
+            ClassicAssert.AreEqual(1, actual[0]);
+            ClassicAssert.AreEqual(2, actual[1]);
+            ClassicAssert.AreEqual(3, actual[2]);
         }
 
         [Test]
@@ -56,7 +57,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
 
             var target = new FloatingPointChromosome(0.5, 2.5, 64, 2);
             var actual = target.ToFloatingPoint();
-            Assert.AreEqual(0.5, actual);
+            ClassicAssert.AreEqual(0.5, actual);
         }
 
         [Test]
@@ -67,7 +68,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
 
             var target = new FloatingPointChromosome(0.5, 2.5, 64, 2);
             var actual = target.ToFloatingPoint();
-            Assert.AreEqual(2.5, actual);
+            ClassicAssert.AreEqual(2.5, actual);
         }
 
         [Test]
@@ -78,7 +79,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var target = new FloatingPointChromosome(0, 0, 2);
             var actual = target.ToFloatingPoint();
 
-            Assert.AreEqual(0, actual);
+            ClassicAssert.AreEqual(0, actual);
         }
 
         [Test]
@@ -89,16 +90,16 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             var target = new FloatingPointChromosome(0, 0, 2);
 
             target.FlipGene(0);
-            Assert.AreEqual("10000000000000000000000000000000", target.ToString());
+            ClassicAssert.AreEqual("10000000000000000000000000000000", target.ToString());
 
             target.FlipGene(1);
-            Assert.AreEqual("11000000000000000000000000000000", target.ToString());
+            ClassicAssert.AreEqual("11000000000000000000000000000000", target.ToString());
 
             target.FlipGene(31);
-            Assert.AreEqual("11000000000000000000000000000001", target.ToString());
+            ClassicAssert.AreEqual("11000000000000000000000000000001", target.ToString());
 
             target.FlipGene(30);
-            Assert.AreEqual("11000000000000000000000000000011", target.ToString());
+            ClassicAssert.AreEqual("11000000000000000000000000000011", target.ToString());
         }
     }
 }

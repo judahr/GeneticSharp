@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Checkers
 {
@@ -11,22 +12,22 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
         public void Constructor_ColumnAndRowIndex_FreeOrNotPlayable()
         {
             var target = new CheckersSquare(0, 0);
-            Assert.AreEqual(CheckersSquareState.NotPlayable, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.NotPlayable, target.State);
 
             target = new CheckersSquare(7, 7);
-            Assert.AreEqual(CheckersSquareState.NotPlayable, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.NotPlayable, target.State);
 
             target = new CheckersSquare(1, 0);
-            Assert.AreEqual(CheckersSquareState.Free, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.Free, target.State);
 
             target = new CheckersSquare(2, 0);
-            Assert.AreEqual(CheckersSquareState.NotPlayable, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.NotPlayable, target.State);
 
             target = new CheckersSquare(3, 0);
-            Assert.AreEqual(CheckersSquareState.Free, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.Free, target.State);
 
             target = new CheckersSquare(4, 0);
-            Assert.AreEqual(CheckersSquareState.NotPlayable, target.State);
+            ClassicAssert.AreEqual(CheckersSquareState.NotPlayable, target.State);
         }
 
         [Test]
@@ -35,7 +36,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             var square = new CheckersSquare(3, 2);
             square.PutPiece(new CheckersPiece(CheckersPlayer.PlayerOne));
 
-            Assert.IsFalse(square.PutPiece(new CheckersPiece(CheckersPlayer.PlayerOne)));
+            ClassicAssert.IsFalse(square.PutPiece(new CheckersPiece(CheckersPlayer.PlayerOne)));
         }
 
         [Test]
@@ -54,7 +55,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
         {
             var square = new CheckersSquare(3, 2);
 
-            Assert.IsFalse(square.RemovePiece());
+            ClassicAssert.IsFalse(square.RemovePiece());
         }
 
         [Test]
@@ -62,7 +63,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
         {
             var square = new CheckersSquare(3, 2);
 
-            Assert.IsFalse(square.Equals("square"));
+            ClassicAssert.IsFalse(square.Equals("square"));
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             var square = new CheckersSquare(3, 2);
             var other = new CheckersSquare(3, 3);
 
-            Assert.IsFalse(square.Equals(other));
+            ClassicAssert.IsFalse(square.Equals(other));
         }
 
         [Test]
@@ -80,7 +81,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             var square = new CheckersSquare(3, 3);
             var other = new CheckersSquare(3, 3);
 
-            Assert.IsTrue(square.Equals(other));
+            ClassicAssert.IsTrue(square.Equals(other));
         }
 
         [Test]
@@ -89,7 +90,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             var square = new CheckersSquare(3, 3);
             var other = new CheckersSquare(3, 2);
 
-            Assert.AreNotEqual(square.GetHashCode(), other.GetHashCode());
+            ClassicAssert.AreNotEqual(square.GetHashCode(), other.GetHashCode());
         }
     }
 }

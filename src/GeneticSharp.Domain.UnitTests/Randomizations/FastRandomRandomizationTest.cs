@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Randomizations
 {
@@ -17,17 +18,17 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(100, () =>
             {
-                Assert.IsTrue(target.GetFloat(0, 2.2f) < 1);
+                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) < 1);
             });
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                Assert.IsTrue(target.GetFloat(0, 2.2f) > 2.1);
+                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) > 2.1);
             });
 
             for (int i = 0; i < 100; i++)
             {
-                Assert.AreNotEqual(2.3, target.GetFloat(0, 2.2f));
+                ClassicAssert.AreNotEqual(2.3, target.GetFloat(0, 2.2f));
             }
         }
 
@@ -36,7 +37,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         {
             var target = new FastRandomRandomization();
 
-            Assert.AreNotEqual(target.GetFloat(), target.GetFloat());
+            ClassicAssert.AreNotEqual(target.GetFloat(), target.GetFloat());
         }
 
         [Test]
@@ -46,17 +47,17 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(100, () =>
             {
-                Assert.IsTrue(target.GetDouble(0, 2.2) < 1);
+                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) < 1);
             });
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                Assert.IsTrue(target.GetDouble(0, 2.2) > 2.1);
+                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) > 2.1);
             });
 
             for (int i = 0; i < 100; i++)
             {
-                Assert.AreNotEqual(2.3, target.GetDouble(0, 2.2));
+                ClassicAssert.AreNotEqual(2.3, target.GetDouble(0, 2.2));
             }
         }
 
@@ -65,7 +66,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         {
             var target = new FastRandomRandomization();
 
-            Assert.AreNotEqual(target.GetDouble(), target.GetDouble());
+            ClassicAssert.AreNotEqual(target.GetDouble(), target.GetDouble());
         }
 
         [Test]
@@ -82,8 +83,8 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
                     actual.Add(target.GetInt(0, int.MaxValue));
                 });
 
-                Assert.AreEqual(1000, actual.Count);
-                Assert.AreEqual(1000, actual.Distinct().Count());
+                ClassicAssert.AreEqual(1000, actual.Count);
+                ClassicAssert.AreEqual(1000, actual.Distinct().Count());
             });
         }
 
@@ -94,17 +95,17 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(100, () =>
             {
-                Assert.AreEqual(0, target.GetInt(0, 2));
+                ClassicAssert.AreEqual(0, target.GetInt(0, 2));
             });
 
             FlowAssert.IsAtLeastOneAttemptOk(100, () =>
             {
-                Assert.AreEqual(1, target.GetInt(0, 2));
+                ClassicAssert.AreEqual(1, target.GetInt(0, 2));
             });
 
             for (int i = 0; i < 100; i++)
             {
-                Assert.AreNotEqual(2, target.GetInt(0, 2));
+                ClassicAssert.AreNotEqual(2, target.GetInt(0, 2));
             }
         }
 
@@ -113,19 +114,19 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         {
             var target = new FastRandomRandomization();
             var actual = target.GetInts(1, 0, 10);
-            Assert.AreEqual(1, actual.Length);
-            Assert.IsTrue(actual[0] >= 0 && actual[0] < 10);
+            ClassicAssert.AreEqual(1, actual.Length);
+            ClassicAssert.IsTrue(actual[0] >= 0 && actual[0] < 10);
 
             actual = target.GetInts(2, 0, 10);
-            Assert.AreEqual(2, actual.Length);
-            Assert.IsTrue(actual[0] >= 0 && actual[0] < 10);
-            Assert.IsTrue(actual[1] >= 0 && actual[1] < 10);
+            ClassicAssert.AreEqual(2, actual.Length);
+            ClassicAssert.IsTrue(actual[0] >= 0 && actual[0] < 10);
+            ClassicAssert.IsTrue(actual[1] >= 0 && actual[1] < 10);
 
             actual = target.GetInts(3, 0, 10);
-            Assert.AreEqual(3, actual.Length);
-            Assert.IsTrue(actual[0] >= 0 && actual[0] < 10);
-            Assert.IsTrue(actual[1] >= 0 && actual[1] < 10);
-            Assert.IsTrue(actual[2] >= 0 && actual[2] < 10);
+            ClassicAssert.AreEqual(3, actual.Length);
+            ClassicAssert.IsTrue(actual[0] >= 0 && actual[0] < 10);
+            ClassicAssert.IsTrue(actual[1] >= 0 && actual[1] < 10);
+            ClassicAssert.IsTrue(actual[2] >= 0 && actual[2] < 10);
         }
 
 
@@ -147,39 +148,39 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         {
             var target = new FastRandomRandomization();
             var actual = target.GetUniqueInts(10, 0, 10);
-            Assert.AreEqual(10, actual.Length);
-            Assert.AreEqual(10, actual.Distinct().Count());
+            ClassicAssert.AreEqual(10, actual.Length);
+            ClassicAssert.AreEqual(10, actual.Distinct().Count());
 
             for (int i = 0; i < 10; i++)
             {
-                Assert.IsTrue(actual[i] >= 0 && actual[i] < 10);
+                ClassicAssert.IsTrue(actual[i] >= 0 && actual[i] < 10);
             }
 
             actual = target.GetUniqueInts(10, 10, 20);
-            Assert.AreEqual(10, actual.Length);
-            Assert.AreEqual(10, actual.Distinct().Count());
+            ClassicAssert.AreEqual(10, actual.Length);
+            ClassicAssert.AreEqual(10, actual.Distinct().Count());
 
             for (int i = 0; i < 10; i++)
             {
-                Assert.IsTrue(actual[i] >= 10 && actual[i] < 20);
+                ClassicAssert.IsTrue(actual[i] >= 10 && actual[i] < 20);
             }
 
             actual = target.GetUniqueInts(2, 0, 20);
-            Assert.AreEqual(2, actual.Length);
-            Assert.AreEqual(2, actual.Distinct().Count());
+            ClassicAssert.AreEqual(2, actual.Length);
+            ClassicAssert.AreEqual(2, actual.Distinct().Count());
 
             for (int i = 0; i < 2; i++)
             {
-                Assert.IsTrue(actual[i] >= 0 && actual[i] < 20);
+                ClassicAssert.IsTrue(actual[i] >= 0 && actual[i] < 20);
             }
 
             FlowAssert.IsAtLeastOneAttemptOk(100, () =>
             {
                 actual = target.GetUniqueInts(2, 0, 20);
-                Assert.AreEqual(2, actual.Length);
-                Assert.AreEqual(2, actual.Distinct().Count());
+                ClassicAssert.AreEqual(2, actual.Length);
+                ClassicAssert.AreEqual(2, actual.Distinct().Count());
 
-                Assert.IsTrue(actual[0] >= 2);
+                ClassicAssert.IsTrue(actual[0] >= 2);
             });
         }
 
@@ -200,7 +201,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
             var target = new FastRandomRandomization();
 
             var actual = target.GetInt(-10, -9);
-            Assert.AreEqual(-10, actual);
+            ClassicAssert.AreEqual(-10, actual);
         }
 
         [Test]
@@ -219,7 +220,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             for (int i = 0; i < actual.Length; i++)
             {
-                Assert.AreEqual(actual[i], target.GetInt(int.MinValue, int.MaxValue));
+                ClassicAssert.AreEqual(actual[i], target.GetInt(int.MinValue, int.MaxValue));
             }
         }
     }

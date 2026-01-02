@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Checkers
 {
@@ -15,7 +16,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
                 new CheckersMove(null, new CheckersSquare(0, 0));
             });
 
-            Assert.AreEqual("piece", actual.ParamName);
+            ClassicAssert.AreEqual("piece", actual.ParamName);
         }
 
         [Test]
@@ -37,7 +38,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
                 new CheckersMove(new CheckersPiece(CheckersPlayer.PlayerOne) { CurrentSquare = new CheckersSquare(0, 1) }, null);
             });
 
-            Assert.AreEqual("toSquare", actual.ParamName);
+            ClassicAssert.AreEqual("toSquare", actual.ParamName);
         }
     }
 }

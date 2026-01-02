@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using NSubstitute;
-
+using NUnit.Framework.Legacy;
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
     [TestFixture]
@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                 target.AddTermination(null);
             });
 
-            Assert.AreEqual("termination", actual.ParamName);
+            ClassicAssert.AreEqual("termination", actual.ParamName);
         }
 
         [Test()]
@@ -50,7 +50,7 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
             t3.HasReached(ga).ReturnsForAnyArgs(false);
             target.AddTermination(t3);
 
-            Assert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
         }
 
         [Test()]
@@ -71,7 +71,7 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
             t3.HasReached(ga).ReturnsForAnyArgs(false);
             target.AddTermination(t3);
 
-            Assert.IsTrue(target.HasReached(ga));
+            ClassicAssert.IsTrue(target.HasReached(ga));
         }
     }
 }

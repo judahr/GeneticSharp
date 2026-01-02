@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Drawing
 {
@@ -37,12 +38,12 @@ namespace GeneticSharp.Extensions.UnitTests.Drawing
             ga.Start();
 
             var c = ga.BestChromosome as BitmapChromosome;
-            Assert.IsNotNull(c);
+            ClassicAssert.IsNotNull(c);
 
             var bitmap = c.BuildBitmap();
-            Assert.IsNotNull(bitmap);
-            Assert.AreEqual(32, bitmap.Width);
-            Assert.AreEqual(32, bitmap.Height);
+            ClassicAssert.IsNotNull(bitmap);
+            ClassicAssert.AreEqual(32, bitmap.Width);
+            ClassicAssert.AreEqual(32, bitmap.Height);
         }
     }
 }

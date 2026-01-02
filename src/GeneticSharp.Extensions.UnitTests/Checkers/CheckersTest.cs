@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Checkers
 {
@@ -44,7 +45,7 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
      
             var lastFitness = ((CheckersChromosome)ga.Population.BestChromosome).Fitness;
 
-            Assert.LessOrEqual(firstFitness, lastFitness);
+            ClassicAssert.LessOrEqual(firstFitness, lastFitness);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using NSubstitute;
 using GeneticSharp.Extensions;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Selections
 {
@@ -39,7 +40,7 @@ namespace GeneticSharp.Domain.UnitTests.Selections
             });
 
             var actual = target.SelectChromosomes(10, generation);
-            Assert.AreEqual(10, actual.Count);
+            ClassicAssert.AreEqual(10, actual.Count);
 
             var previousChromosomes = actual.Select(c => c.GetGenes().ToArray()).ToArray();
             var mutation = new UniformMutation(true);
@@ -51,7 +52,7 @@ namespace GeneticSharp.Domain.UnitTests.Selections
                 {
                     mutation.Mutate(actual[i], 1);
 
-                    Assert.AreEqual(1, actual.Count(c => c.GetGene(0).Value != null), "Mutation has changed more than one chromosome at the time");
+                    ClassicAssert.AreEqual(1, actual.Count(c => c.GetGene(0).Value != null), "Mutation has changed more than one chromosome at the time");
                     break;
                 }
             }

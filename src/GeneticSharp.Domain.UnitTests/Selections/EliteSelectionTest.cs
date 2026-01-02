@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using System.Linq;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Selections
 {
@@ -41,7 +42,7 @@ namespace GeneticSharp.Domain.UnitTests.Selections
                 target.SelectChromosomes(2, null);
             });
 
-            Assert.AreEqual("generation", actual.ParamName);
+            ClassicAssert.AreEqual("generation", actual.ParamName);
         }
 
         [Test]
@@ -70,15 +71,15 @@ namespace GeneticSharp.Domain.UnitTests.Selections
 
 
             var actual = target.SelectChromosomes(2, generation1);
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(0.5, actual[0].Fitness);
-            Assert.AreEqual(0.1, actual[1].Fitness);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(0.5, actual[0].Fitness);
+            ClassicAssert.AreEqual(0.1, actual[1].Fitness);
 
             actual = target.SelectChromosomes(3, generation2);
-            Assert.AreEqual(3, actual.Count);
-            Assert.AreEqual(0.7, actual[0].Fitness);
-            Assert.AreEqual(0.5, actual[1].Fitness);
-            Assert.AreEqual(0.1, actual[2].Fitness);
+            ClassicAssert.AreEqual(3, actual.Count);
+            ClassicAssert.AreEqual(0.7, actual[0].Fitness);
+            ClassicAssert.AreEqual(0.5, actual[1].Fitness);
+            ClassicAssert.AreEqual(0.1, actual[2].Fitness);
         }
 
         /// <summary>
@@ -103,20 +104,20 @@ namespace GeneticSharp.Domain.UnitTests.Selections
 
 
             var actual = target.SelectChromosomes(2, generation1);
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(9, actual[0].Fitness);
-            Assert.AreEqual(8, actual[1].Fitness);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(9, actual[0].Fitness);
+            ClassicAssert.AreEqual(8, actual[1].Fitness);
 
             actual = target.SelectChromosomes(3, generation2);
-            Assert.AreEqual(3, actual.Count);
-            Assert.AreEqual(9, actual[0].Fitness);
-            Assert.AreEqual(6, actual[1].Fitness);
-            Assert.AreEqual(5, actual[2].Fitness);            
+            ClassicAssert.AreEqual(3, actual.Count);
+            ClassicAssert.AreEqual(9, actual[0].Fitness);
+            ClassicAssert.AreEqual(6, actual[1].Fitness);
+            ClassicAssert.AreEqual(5, actual[2].Fitness);            
 
             actual = target.SelectChromosomes(2, generation3);
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(9, actual[0].Fitness);
-            Assert.AreEqual(3, actual[1].Fitness);
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(9, actual[0].Fitness);
+            ClassicAssert.AreEqual(3, actual[1].Fitness);
         }
     }
 }

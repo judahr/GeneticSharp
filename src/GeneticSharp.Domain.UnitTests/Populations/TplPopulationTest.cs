@@ -1,6 +1,7 @@
 ﻿using System;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Populations
 {
@@ -22,7 +23,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
                 new TplPopulation(2, 2, null);
             });
 
-            Assert.AreEqual("adamChromosome", actual.ParamName);
+            ClassicAssert.AreEqual("adamChromosome", actual.ParamName);
         }
 
         [Test]
@@ -59,7 +60,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
             target.CurrentGeneration.Chromosomes.Each(c => c.Fitness = 1);
             target.EndCurrentGeneration();
 
-            Assert.IsTrue(eventRaise);
+            ClassicAssert.IsTrue(eventRaise);
         }
     }
 }

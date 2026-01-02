@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Mutations
 {
@@ -32,11 +33,11 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
 
             target.Mutate(chromosome, 0);
 
-            Assert.AreEqual(4, chromosome.Length);
-            Assert.AreEqual(1, chromosome.GetGene(0).Value);
-            Assert.AreEqual(2, chromosome.GetGene(1).Value);
-            Assert.AreEqual(3, chromosome.GetGene(2).Value);
-            Assert.AreEqual(4, chromosome.GetGene(3).Value);
+            ClassicAssert.AreEqual(4, chromosome.Length);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(3, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(4, chromosome.GetGene(3).Value);
         }
 
         [Test()]
@@ -58,11 +59,11 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
 
             target.Mutate(chromosome, 1);
 
-            Assert.AreEqual(4, chromosome.Length);
-            Assert.AreEqual(3, chromosome.GetGene(0).Value);
-            Assert.AreEqual(2, chromosome.GetGene(1).Value);
-            Assert.AreEqual(1, chromosome.GetGene(2).Value);
-            Assert.AreEqual(4, chromosome.GetGene(3).Value);
+            ClassicAssert.AreEqual(4, chromosome.Length);
+            ClassicAssert.AreEqual(3, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(4, chromosome.GetGene(3).Value);
         }
     }
 }

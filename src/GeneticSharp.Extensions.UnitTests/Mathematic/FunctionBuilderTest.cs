@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Mathematic
 {
@@ -31,13 +32,13 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
             ga.Termination = new OrTermination(new FitnessThresholdTermination(0), new TimeEvolvingTermination(TimeSpan.FromSeconds(15)));
             ga.Start();
             var bestChromosome = ga.BestChromosome as FunctionBuilderChromosome;
-            Assert.AreEqual(0.0, bestChromosome.Fitness.Value);
+            ClassicAssert.AreEqual(0.0, bestChromosome.Fitness.Value);
             var actual = fitness.GetFunctionResult(
                              bestChromosome.BuildFunction(),
                              new FunctionBuilderInput(new double[] { 3, 4 }, 7)
                 );
 
-            Assert.AreEqual(7, actual);
+            ClassicAssert.AreEqual(7, actual);
         }
     }
 }

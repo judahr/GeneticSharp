@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
-
+using NUnit.Framework.Legacy;
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
     [TestFixture]
@@ -18,9 +18,9 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                 new ChromosomeStub() { Fitness = 0.2 },
                 new ChromosomeStub() { Fitness = 0.3 });
 
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
         }
 
         [Test()]
@@ -35,9 +35,9 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                 new ChromosomeStub() { Fitness = 0.1 },
                 new ChromosomeStub() { Fitness = 0.1 });
 
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
         }
 
         [Test()]
@@ -52,11 +52,11 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                                       new ChromosomeStub() { Fitness = 0.3 },
                                       new ChromosomeStub() { Fitness = 0.3 });
 
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsFalse(target.HasReached(ga));
-            Assert.IsTrue(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsFalse(target.HasReached(ga));
+            ClassicAssert.IsTrue(target.HasReached(ga));
         }
     }
 }

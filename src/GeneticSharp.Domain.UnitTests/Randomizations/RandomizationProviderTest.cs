@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Randomizations
 {
@@ -9,7 +10,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         [Test()]
         public void Current_Default_IsNotNull()
         {
-            Assert.IsNotNull(RandomizationProvider.Current);
+            ClassicAssert.IsNotNull(RandomizationProvider.Current);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Mathematic
 {
@@ -23,12 +24,12 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
             chromosome.ReplaceGene(1, new Gene(2));
 
             var actual = target.Evaluate(chromosome);
-            Assert.AreEqual(0, actual);
+            ClassicAssert.AreEqual(0, actual);
 
             chromosome.ReplaceGene(1, new Gene(3));
 
             actual = target.Evaluate(chromosome);
-            Assert.AreEqual(-1, actual);
+            ClassicAssert.AreEqual(-1, actual);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Terminations
 {
@@ -17,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Terminations
                 target.HasReached(null);
             });
 
-            Assert.AreEqual("geneticAlgorithm", actual.ParamName);
+            ClassicAssert.AreEqual("geneticAlgorithm", actual.ParamName);
         }
     }
 }

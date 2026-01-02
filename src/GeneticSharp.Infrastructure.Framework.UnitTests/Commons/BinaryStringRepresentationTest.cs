@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
 {
@@ -11,22 +12,22 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToRepresentation_Int64_Representation()
         {
             var actual = BinaryStringRepresentation.ToRepresentation(1L);
-            Assert.AreEqual("1", actual);
+            ClassicAssert.AreEqual("1", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(1L, 16);
-            Assert.AreEqual("0000000000000001", actual);
+            ClassicAssert.AreEqual("0000000000000001", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(10L);
-            Assert.AreEqual("1010", actual);
+            ClassicAssert.AreEqual("1010", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(360L);
-            Assert.AreEqual("101101000", actual);
+            ClassicAssert.AreEqual("101101000", actual);
 
             for (long i = 0; i <= 360; i++)
             {
                 var stringRepresentation = BinaryStringRepresentation.ToRepresentation(i, 9);
-                Assert.AreEqual(9, stringRepresentation.Length);
-                Assert.AreEqual(i, BinaryStringRepresentation.ToInt64(stringRepresentation));
+                ClassicAssert.AreEqual(9, stringRepresentation.Length);
+                ClassicAssert.AreEqual(i, BinaryStringRepresentation.ToInt64(stringRepresentation));
             }
         }
 
@@ -43,23 +44,23 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToRepresentation_Int64Array_Representations()
         {
             var actual = BinaryStringRepresentation.ToRepresentation(new long[] { 1L, 2L, 3L }, new int[] { 4, 6, 8 });
-            Assert.AreEqual(3, actual.Length);
-            Assert.AreEqual("0001", actual[0]);
-            Assert.AreEqual("000010", actual[1]);
-            Assert.AreEqual("00000011", actual[2]);
+            ClassicAssert.AreEqual(3, actual.Length);
+            ClassicAssert.AreEqual("0001", actual[0]);
+            ClassicAssert.AreEqual("000010", actual[1]);
+            ClassicAssert.AreEqual("00000011", actual[2]);
         }
 
         [Test]
         public void ToInt64_Representation_Int64()
         {
             var actual = BinaryStringRepresentation.ToInt64("1");
-            Assert.AreEqual(1L, actual);
+            ClassicAssert.AreEqual(1L, actual);
 
             actual = BinaryStringRepresentation.ToInt64("0000000000000001");
-            Assert.AreEqual(1L, actual);
+            ClassicAssert.AreEqual(1L, actual);
 
             actual = BinaryStringRepresentation.ToInt64("1010");
-            Assert.AreEqual(10L, actual);
+            ClassicAssert.AreEqual(10L, actual);
         }
 
         [Test]
@@ -75,10 +76,10 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToInt64_RepresentationAndTotalBitsArray_Int64s()
         {
             var actual = BinaryStringRepresentation.ToInt64("000100001000000011", new int[] { 4, 6, 8 });
-            Assert.AreEqual(3, actual.Length);
-            Assert.AreEqual(1L, actual[0]);
-            Assert.AreEqual(2L, actual[1]);
-            Assert.AreEqual(3L, actual[2]);
+            ClassicAssert.AreEqual(3, actual.Length);
+            ClassicAssert.AreEqual(1L, actual[0]);
+            ClassicAssert.AreEqual(2L, actual[1]);
+            ClassicAssert.AreEqual(3L, actual[2]);
         }
         #endregion
 
@@ -87,7 +88,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToRepresentation_DoubleAndTotalBits_LengthEqualsTotalBits()
         {
             var actual = BinaryStringRepresentation.ToRepresentation(1000, 10, 0);
-            Assert.AreEqual(actual.Length, 10);
+            ClassicAssert.AreEqual(actual.Length, 10);
         }
 
         [Test]
@@ -113,13 +114,13 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToRepresentation_Double_Representation()
         {
             var actual = BinaryStringRepresentation.ToRepresentation(1.1);
-            Assert.AreEqual("1101110", actual);
+            ClassicAssert.AreEqual("1101110", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(1.1, 16);
-            Assert.AreEqual("0000000001101110", actual);
+            ClassicAssert.AreEqual("0000000001101110", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(10.123, 0, 3);
-            Assert.AreEqual("10011110001011", actual);
+            ClassicAssert.AreEqual("10011110001011", actual);
         }
 
         [Test]
@@ -130,22 +131,22 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
                 new int[] { 16, 14 },
                 new int[] { 2, 3 });
 
-            Assert.AreEqual(2, actual.Length);
-            Assert.AreEqual("0000000001101110", actual[0]);
-            Assert.AreEqual("10011110001011", actual[1]);
+            ClassicAssert.AreEqual(2, actual.Length);
+            ClassicAssert.AreEqual("0000000001101110", actual[0]);
+            ClassicAssert.AreEqual("10011110001011", actual[1]);
         }
 
         [Test]
         public void ToDouble_Representation_Double()
         {
             var actual = BinaryStringRepresentation.ToDouble("1101110");
-            Assert.AreEqual(1.1, actual);
+            ClassicAssert.AreEqual(1.1, actual);
 
             actual = BinaryStringRepresentation.ToDouble("0000000001101110");
-            Assert.AreEqual(1.1, actual);
+            ClassicAssert.AreEqual(1.1, actual);
 
             actual = BinaryStringRepresentation.ToDouble("10011110001011", 3);
-            Assert.AreEqual(10.123, actual);
+            ClassicAssert.AreEqual(10.123, actual);
         }
 
         [Test]
@@ -154,13 +155,13 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
             var actual = BinaryStringRepresentation.ToRepresentation(-1.1);
 
             // https://en.wikipedia.org/wiki/Signed_number_representations#Two.27s_complement
-            Assert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", actual);
+            ClassicAssert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(-1.1, 64);
-            Assert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", actual);
+            ClassicAssert.AreEqual("1111111111111111111111111111111111111111111111111111111110010010", actual);
 
             actual = BinaryStringRepresentation.ToRepresentation(-10.123, 0, 3);
-            Assert.AreEqual("1111111111111111111111111111111111111111111111111101100001110101", actual);
+            ClassicAssert.AreEqual("1111111111111111111111111111111111111111111111111101100001110101", actual);
         }
 
 
@@ -168,23 +169,23 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         public void ToDouble_NegativeRepresentation_Double()
         {
             var actual = BinaryStringRepresentation.ToDouble("1111111111111111111111111111111111111111111111111111111110010010");
-            Assert.AreEqual(-1.1, actual);
+            ClassicAssert.AreEqual(-1.1, actual);
 
             actual = BinaryStringRepresentation.ToDouble("1111111111111111111111111111111111111111111111111111111110010010");
-            Assert.AreEqual(-1.1, actual);
+            ClassicAssert.AreEqual(-1.1, actual);
 
             actual = BinaryStringRepresentation.ToDouble("1111111111111111111111111111111111111111111111111101100001110101", 3);
-            Assert.AreEqual(-10.123, actual);
+            ClassicAssert.AreEqual(-10.123, actual);
         }
 
         [Test]
         public void ToDouble_DiffArraysLengths_Exception()
         {
             var actual = Assert.Catch(() => BinaryStringRepresentation.ToDouble("000000000110111010011110001011", new int[] { 16, 14, 1 }, new int[] { 2, 3 }));
-            Assert.AreEqual("The length of totalBits should be the same of the length of fractionDigits.", actual.Message);
+            ClassicAssert.AreEqual("The length of totalBits should be the same of the length of fractionDigits.", actual.Message);
 
             actual = Assert.Catch(() => BinaryStringRepresentation.ToDouble("00000000011011101001111000101", new int[] { 16, 14, }, new int[] { 2, 3 }));
-            Assert.AreEqual("The representation length should be the same of the sum of the totalBits.", actual.Message);
+            ClassicAssert.AreEqual("The representation length should be the same of the sum of the totalBits.", actual.Message);
         }
 
         [Test]
@@ -192,9 +193,9 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         {
             var actual = BinaryStringRepresentation.ToDouble("000000000110111010011110001011", new int[] { 16, 14 }, new int[] { 2, 3 });
 
-            Assert.AreEqual(2, actual.Length);
-            Assert.AreEqual(1.1, actual[0]);
-            Assert.AreEqual(10.123, actual[1]);
+            ClassicAssert.AreEqual(2, actual.Length);
+            ClassicAssert.AreEqual(1.1, actual[0]);
+            ClassicAssert.AreEqual(10.123, actual[1]);
         }
 
         [Test]
@@ -202,11 +203,11 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Commons
         {
             var actual = BinaryStringRepresentation.ToDouble("1111101000111110100011111010001111101000", new int[] { 10, 10, 10, 10 }, new int[] { 0, 0, 0, 0 });
 
-            Assert.AreEqual(4, actual.Length);
-            Assert.AreEqual(1000, actual[0]);
-            Assert.AreEqual(1000, actual[1]);
-            Assert.AreEqual(1000, actual[2]);
-            Assert.AreEqual(1000, actual[3]);
+            ClassicAssert.AreEqual(4, actual.Length);
+            ClassicAssert.AreEqual(1000, actual[0]);
+            ClassicAssert.AreEqual(1000, actual[1]);
+            ClassicAssert.AreEqual(1000, actual[2]);
+            ClassicAssert.AreEqual(1000, actual[3]);
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Mutations
 {
@@ -46,9 +47,9 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
                 });
                     
             target.Mutate(chromosome, 1);
-            Assert.AreEqual(0, chromosome.GetGene(0).Value);
-            Assert.AreEqual(1, chromosome.GetGene(1).Value);
-            Assert.AreEqual(0, chromosome.GetGene(2).Value);
+            ClassicAssert.AreEqual(0, chromosome.GetGene(0).Value);
+            ClassicAssert.AreEqual(1, chromosome.GetGene(1).Value);
+            ClassicAssert.AreEqual(0, chromosome.GetGene(2).Value);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GeneticSharp.Domain.UnitTests;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 {
@@ -31,8 +32,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.IsTrue(actual);
-            Assert.AreEqual("132", pipeline);
+            ClassicAssert.IsTrue(actual);
+            ClassicAssert.AreEqual("132", pipeline);
         }
 
         [Test]
@@ -56,8 +57,8 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.IsTrue(actual);
-            Assert.AreEqual("132", pipeline);
+            ClassicAssert.IsTrue(actual);
+            ClassicAssert.AreEqual("132", pipeline);
         }
 
         [Test]
@@ -74,7 +75,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             });
 
             var actual = target.Start();
-            Assert.IsFalse(actual);
+            ClassicAssert.IsFalse(actual);
         }
 
         [Test]
@@ -130,7 +131,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
                 });
 
                 Parallel.Invoke(
-                    () => Assert.IsTrue(target.Start()),
+                    () => ClassicAssert.IsTrue(target.Start()),
                     () =>
                     {
                         Thread.Sleep(100);
@@ -172,7 +173,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
                     target.Stop();
                 });
 
-            Assert.IsFalse(target.IsRunning);
+            ClassicAssert.IsFalse(target.IsRunning);
         }
 
         [Test]
@@ -214,7 +215,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
             }).Wait();
 
             otherThread.Stop();
-            Assert.GreaterOrEqual(otherThreadCount, 2);
+            ClassicAssert.GreaterOrEqual(otherThreadCount, 2);
         }
     }
 }

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Chromosomes
 {
@@ -10,10 +11,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         public void ToString_NoArgs_Value()
         {
             var target = new Gene();
-            Assert.AreEqual("", target.ToString());
+            ClassicAssert.AreEqual("", target.ToString());
 
             target = new Gene(1);
-            Assert.AreEqual("1", target.ToString());
+            ClassicAssert.AreEqual("1", target.ToString());
         }
 
         [Test]
@@ -21,7 +22,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = 1;
-            Assert.IsFalse(target.Equals(other));
+            ClassicAssert.IsFalse(target.Equals(other));
         }
 
         [Test]
@@ -29,7 +30,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(2); ;
-            Assert.IsFalse(target.Equals(other as object));
+            ClassicAssert.IsFalse(target.Equals(other as object));
         }
 
         [Test]
@@ -37,7 +38,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(1); ;
-            Assert.IsTrue(target.Equals(other as object));
+            ClassicAssert.IsTrue(target.Equals(other as object));
         }
 
         [Test]
@@ -45,7 +46,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(2);
-            Assert.IsFalse(target.Equals(other));
+            ClassicAssert.IsFalse(target.Equals(other));
         }
 
         [Test]
@@ -53,14 +54,14 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(1);
-            Assert.IsTrue(target.Equals(other));
+            ClassicAssert.IsTrue(target.Equals(other));
         }
 
         [Test]
         public void GetHashCode_NoValue_Zero()
         {
             var target = new Gene();
-            Assert.AreEqual(0, target.GetHashCode());
+            ClassicAssert.AreEqual(0, target.GetHashCode());
         }
 
         [Test]
@@ -68,7 +69,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(1);
-            Assert.IsTrue(target == other);
+            ClassicAssert.IsTrue(target == other);
         }
 
         [Test]
@@ -76,7 +77,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(2);
-            Assert.IsFalse(target == other);
+            ClassicAssert.IsFalse(target == other);
         }
 
         [Test]
@@ -84,7 +85,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         {
             var target = new Gene(1);
             var other = new Gene(2);
-            Assert.IsTrue(target != other);
+            ClassicAssert.IsTrue(target != other);
         }
     }
 }

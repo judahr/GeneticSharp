@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Reinsertions
 {
@@ -35,10 +36,10 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
             };
 
             var selected = target.SelectChromosomes(population, offspring, parents);
-            Assert.AreEqual(3, selected.Count);
-            Assert.AreEqual(4, selected[0].Length);
-            Assert.AreEqual(3, selected[1].Length);
-            Assert.AreEqual(2, selected[2].Length);
+            ClassicAssert.AreEqual(3, selected.Count);
+            ClassicAssert.AreEqual(4, selected[0].Length);
+            ClassicAssert.AreEqual(3, selected[1].Length);
+            ClassicAssert.AreEqual(2, selected[2].Length);
         }
     }
 }

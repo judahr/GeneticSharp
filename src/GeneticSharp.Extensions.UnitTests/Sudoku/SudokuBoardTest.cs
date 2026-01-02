@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Sudoku
 {
@@ -20,7 +21,7 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
             {
                 new SudokuBoard(tooMuchCells);
             });
-            Assert.AreEqual("cells", actual.ParamName);
+            ClassicAssert.AreEqual("cells", actual.ParamName);
         }
 
         /// <summary>
@@ -32,20 +33,20 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
 
             var sudoku = SudokuTestHelper.CreateBoard(SudokuTestDifficulty.VeryEasy);
 
-            Assert.AreEqual(sudoku.GetCell(0, 0), 9);
-            Assert.AreEqual(sudoku.Cells[1], 0);
-            Assert.AreEqual(sudoku.Cells[2], 2);
-            Assert.AreEqual(sudoku.Cells[sudoku.Cells.Count - 2], 5);
-            Assert.AreEqual(sudoku.Cells[sudoku.Cells.Count - 1], 0);
+            ClassicAssert.AreEqual(sudoku.GetCell(0, 0), 9);
+            ClassicAssert.AreEqual(sudoku.Cells[1], 0);
+            ClassicAssert.AreEqual(sudoku.Cells[2], 2);
+            ClassicAssert.AreEqual(sudoku.Cells[sudoku.Cells.Count - 2], 5);
+            ClassicAssert.AreEqual(sudoku.Cells[sudoku.Cells.Count - 1], 0);
 
             sudoku.SetCell(0,0,0);
-            Assert.AreEqual(sudoku.Cells[0], 0);
+            ClassicAssert.AreEqual(sudoku.Cells[0], 0);
             var stringExport = sudoku.ToString();
             var currentIndex = 0;
             foreach (var sudokuCell in sudoku.Cells)
             {
                 var newIndex = stringExport.IndexOf(sudokuCell.ToString(CultureInfo.InvariantCulture), currentIndex, StringComparison.Ordinal);
-                Assert.Greater(newIndex, currentIndex);
+                ClassicAssert.Greater(newIndex, currentIndex);
                 currentIndex = newIndex+1;
             }
         }
@@ -60,9 +61,9 @@ namespace GeneticSharp.Extensions.UnitTests.Sudoku
 
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sudoku", "SudokuList.sdk");
             var sudokus = SudokuBoard.ParseFile(fileName);
-            Assert.AreEqual(sudokus.Count, 16002);
-            Assert.AreEqual(sudokus[0].Cells[2], 7);
-            Assert.AreEqual(sudokus[1].Cells[1], 2);
+            ClassicAssert.AreEqual(sudokus.Count, 16002);
+            ClassicAssert.AreEqual(sudokus[0].Cells[2], 7);
+            ClassicAssert.AreEqual(sudokus[1].Cells[1], 2);
         }
     }
 }

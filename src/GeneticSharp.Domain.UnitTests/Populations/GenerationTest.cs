@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Populations
 {
@@ -50,8 +51,8 @@ namespace GeneticSharp.Domain.UnitTests.Populations
                 Substitute.For<IChromosome>()
             });
 
-            Assert.AreEqual(1, target.Number);
-            Assert.AreEqual(2, target.Chromosomes.Count);
+            ClassicAssert.AreEqual(1, target.Number);
+            ClassicAssert.AreEqual(2, target.Chromosomes.Count);
         }
 
         [Test]
@@ -79,9 +80,9 @@ namespace GeneticSharp.Domain.UnitTests.Populations
             });
 
             target.End(2);
-            Assert.AreEqual(2, target.Chromosomes.Count);
-            Assert.AreEqual(0.3, target.Chromosomes[0].Fitness);
-            Assert.AreEqual(0.2, target.Chromosomes[1].Fitness);
+            ClassicAssert.AreEqual(2, target.Chromosomes.Count);
+            ClassicAssert.AreEqual(0.3, target.Chromosomes[0].Fitness);
+            ClassicAssert.AreEqual(0.2, target.Chromosomes[1].Fitness);
         }
     }
 }

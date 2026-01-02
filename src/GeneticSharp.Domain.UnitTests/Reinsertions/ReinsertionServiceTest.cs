@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Reinsertions
 {
@@ -12,11 +13,11 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
         {
             var actual = ReinsertionService.GetReinsertionTypes();
 
-            Assert.AreEqual(4, actual.Count);
-            Assert.AreEqual(typeof(ElitistReinsertion), actual[0]);
-            Assert.AreEqual(typeof(FitnessBasedReinsertion), actual[1]);
-            Assert.AreEqual(typeof(PureReinsertion), actual[2]);
-            Assert.AreEqual(typeof(UniformReinsertion), actual[3]);
+            ClassicAssert.AreEqual(4, actual.Count);
+            ClassicAssert.AreEqual(typeof(ElitistReinsertion), actual[0]);
+            ClassicAssert.AreEqual(typeof(FitnessBasedReinsertion), actual[1]);
+            ClassicAssert.AreEqual(typeof(PureReinsertion), actual[2]);
+            ClassicAssert.AreEqual(typeof(UniformReinsertion), actual[3]);
         }
 
         [Test()]
@@ -24,11 +25,11 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
         {
             var actual = ReinsertionService.GetReinsertionNames();
 
-            Assert.AreEqual(4, actual.Count);
-            Assert.AreEqual("Elitist", actual[0]);
-            Assert.AreEqual("Fitness Based", actual[1]);
-            Assert.AreEqual("Pure", actual[2]);
-            Assert.AreEqual("Uniform", actual[3]);
+            ClassicAssert.AreEqual(4, actual.Count);
+            ClassicAssert.AreEqual("Elitist", actual[0]);
+            ClassicAssert.AreEqual("Fitness Based", actual[1]);
+            ClassicAssert.AreEqual("Pure", actual[2]);
+            ClassicAssert.AreEqual("Uniform", actual[3]);
         }
 
         [Test()]
@@ -53,16 +54,16 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
         public void CreateReinsertionByName_ValidName_ReinsertionCreated()
         {
             IReinsertion actual = ReinsertionService.CreateReinsertionByName("Elitist") as ElitistReinsertion;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = ReinsertionService.CreateReinsertionByName("Fitness Based") as FitnessBasedReinsertion;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = ReinsertionService.CreateReinsertionByName("Pure") as PureReinsertion;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
 
             actual = ReinsertionService.CreateReinsertionByName("Uniform") as UniformReinsertion;
-            Assert.IsNotNull(actual);
+            ClassicAssert.IsNotNull(actual);
         }
 
         [Test()]
@@ -78,16 +79,16 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
         public void GetReinsertionTypeByName_ValidName_ReinsertionTpe()
         {
             var actual = ReinsertionService.GetReinsertionTypeByName("Elitist");
-            Assert.AreEqual(typeof(ElitistReinsertion), actual);
+            ClassicAssert.AreEqual(typeof(ElitistReinsertion), actual);
 
             actual = ReinsertionService.GetReinsertionTypeByName("Fitness Based");
-            Assert.AreEqual(typeof(FitnessBasedReinsertion), actual);
+            ClassicAssert.AreEqual(typeof(FitnessBasedReinsertion), actual);
 
             actual = ReinsertionService.GetReinsertionTypeByName("Pure");
-            Assert.AreEqual(typeof(PureReinsertion), actual);
+            ClassicAssert.AreEqual(typeof(PureReinsertion), actual);
 
             actual = ReinsertionService.GetReinsertionTypeByName("Uniform");
-            Assert.AreEqual(typeof(UniformReinsertion), actual);
+            ClassicAssert.AreEqual(typeof(UniformReinsertion), actual);
         }
     }
 }

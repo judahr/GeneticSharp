@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Mathematic
 {
@@ -15,8 +16,8 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
                 new EquationChromosome(int.MaxValue, 2);
             }, "EquationChromosome expected value must be lower");
 
-            Assert.AreEqual("expectedResult", actual.ParamName);
-            Assert.AreEqual(actual.ActualValue, int.MaxValue);
+            ClassicAssert.AreEqual("expectedResult", actual.ParamName);
+            ClassicAssert.AreEqual(actual.ActualValue, int.MaxValue);
         }
 
         [Test()]
@@ -24,8 +25,8 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
         {
             var target = new EquationChromosome(10, 2);
             var newCreated = target.CreateNew() as EquationChromosome;
-            Assert.AreEqual(target.Length, newCreated.Length);
-            Assert.AreEqual(target.ResultRange, newCreated.ResultRange);
+            ClassicAssert.AreEqual(target.Length, newCreated.Length);
+            ClassicAssert.AreEqual(target.ResultRange, newCreated.ResultRange);
         }
     }
 }

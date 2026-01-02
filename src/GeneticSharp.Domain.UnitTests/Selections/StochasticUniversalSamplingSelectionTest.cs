@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Selections
 {
@@ -45,7 +46,7 @@ namespace GeneticSharp.Domain.UnitTests.Selections
                 target.SelectChromosomes(2, null);
             });
 
-            Assert.AreEqual("generation", actual.ParamName);
+            ClassicAssert.AreEqual("generation", actual.ParamName);
         }
 
         [Test()]
@@ -80,33 +81,33 @@ namespace GeneticSharp.Domain.UnitTests.Selections
 
             // Step size 1/2 = 0.5
             var actual = target.SelectChromosomes(2, generation);
-            Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
-            Assert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.8
+            ClassicAssert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
+            ClassicAssert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.8
 
             // Step size 1/3 = 0.33
             actual = target.SelectChromosomes(3, generation);
-            Assert.AreEqual(3, actual.Count);
-            Assert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
-            Assert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.63
-            Assert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.96
+            ClassicAssert.AreEqual(3, actual.Count);
+            ClassicAssert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
+            ClassicAssert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.63
+            ClassicAssert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.96
 
             // Step size 1/4 = 0.25
             actual = target.SelectChromosomes(4, generation);
-            Assert.AreEqual(4, actual.Count);
-            Assert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
-            Assert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.55
-            Assert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.80
-            Assert.AreEqual(c1.Fitness, actual[3].Fitness); // 0.05
+            ClassicAssert.AreEqual(4, actual.Count);
+            ClassicAssert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
+            ClassicAssert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.55
+            ClassicAssert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.80
+            ClassicAssert.AreEqual(c1.Fitness, actual[3].Fitness); // 0.05
 
             // Step size 1/5 = 0.20
             actual = target.SelectChromosomes(5, generation);
-            Assert.AreEqual(5, actual.Count);
-            Assert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
-            Assert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.5
-            Assert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.7
-            Assert.AreEqual(c4.Fitness, actual[3].Fitness); // 0.9
-            Assert.AreEqual(c2.Fitness, actual[4].Fitness); // 0.1
+            ClassicAssert.AreEqual(5, actual.Count);
+            ClassicAssert.AreEqual(c2.Fitness, actual[0].Fitness); // 0.3
+            ClassicAssert.AreEqual(c4.Fitness, actual[1].Fitness); // 0.5
+            ClassicAssert.AreEqual(c4.Fitness, actual[2].Fitness); // 0.7
+            ClassicAssert.AreEqual(c4.Fitness, actual[3].Fitness); // 0.9
+            ClassicAssert.AreEqual(c2.Fitness, actual[4].Fitness); // 0.1
         }
     }
 }

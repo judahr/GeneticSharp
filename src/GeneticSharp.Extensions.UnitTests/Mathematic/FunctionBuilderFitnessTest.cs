@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Mathematic
 {
@@ -19,7 +20,7 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
 
             var actual = target.Evaluate(c);
 
-            Assert.AreEqual(double.MinValue, actual);
+            ClassicAssert.AreEqual(double.MinValue, actual);
         }
 
         [Test()]
@@ -34,7 +35,7 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
             c.ReplaceGene(1, new Gene(""));
 
             var actual = target.Evaluate(c);
-            Assert.AreEqual(-3, actual);
+            ClassicAssert.AreEqual(-3, actual);
         }
 
         [Test()]
@@ -49,7 +50,7 @@ namespace GeneticSharp.Extensions.UnitTests.Mathematic
             c.ReplaceGene(1, new Gene(""));
 
             var actual = target.Evaluate(c);
-            Assert.AreEqual(0, actual);
+            ClassicAssert.AreEqual(0, actual);
         }
     }
 }

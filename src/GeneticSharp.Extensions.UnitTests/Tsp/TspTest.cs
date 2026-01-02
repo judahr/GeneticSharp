@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Extensions.UnitTests.Tsp
 {
@@ -29,7 +30,7 @@ namespace GeneticSharp.Extensions.UnitTests.Tsp
           
             var lastDistance = ((TspChromosome)ga.Population.BestChromosome).Distance;
 
-            Assert.Less(lastDistance, firstDistance);
+            ClassicAssert.Less(lastDistance, firstDistance);
         }
     }
 }

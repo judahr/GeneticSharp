@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Selections
 {
@@ -46,7 +47,7 @@ namespace GeneticSharp.Domain.UnitTests.Selections
                 target.SelectChromosomes(2, null);
             });
 
-            Assert.AreEqual("generation", actual.ParamName);
+            ClassicAssert.AreEqual("generation", actual.ParamName);
         }
 
         [Test()]
@@ -108,11 +109,11 @@ namespace GeneticSharp.Domain.UnitTests.Selections
             RandomizationProvider.Current = rnd;
       
             var actual = target.SelectChromosomes(4, generation);
-            Assert.AreEqual(4, actual.Count);
-            Assert.AreEqual(c1, actual[0]);
-            Assert.AreEqual(c3, actual[1]);
-            Assert.AreEqual(c4, actual[2]);
-            Assert.AreEqual(c3, actual[3]);
+            ClassicAssert.AreEqual(4, actual.Count);
+            ClassicAssert.AreEqual(c1, actual[0]);
+            ClassicAssert.AreEqual(c3, actual[1]);
+            ClassicAssert.AreEqual(c4, actual[2]);
+            ClassicAssert.AreEqual(c3, actual[3]);
         }
 
         [Test()]
@@ -151,11 +152,11 @@ namespace GeneticSharp.Domain.UnitTests.Selections
             RandomizationProvider.Current = rnd;
 
             var actual = target.SelectChromosomes(4, generation);
-            Assert.AreEqual(4, actual.Count);
-            Assert.AreEqual(c1, actual[0]);
-            Assert.AreEqual(c3, actual[1]);
-            Assert.AreEqual(c4, actual[2]);
-            Assert.AreEqual(c5, actual[3]);
+            ClassicAssert.AreEqual(4, actual.Count);
+            ClassicAssert.AreEqual(c1, actual[0]);
+            ClassicAssert.AreEqual(c3, actual[1]);
+            ClassicAssert.AreEqual(c4, actual[2]);
+            ClassicAssert.AreEqual(c5, actual[3]);
         }
     }
 }

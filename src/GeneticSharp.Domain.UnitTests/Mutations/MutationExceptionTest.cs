@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Mutations
 {
@@ -14,40 +15,40 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Constructor_NoArgs_DefaultValue()
         {
             var target = new MutationException();
-            Assert.IsTrue(target.Message.Contains("MutationException"));
+            ClassicAssert.IsTrue(target.Message.Contains("MutationException"));
         }
 
         [Test]
         public void Constructor_Message_Message()
         {
             var target = new MutationException("1");
-            Assert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("1", target.Message);
         }
 
         [Test]
         public void Constructor_MessageAndInnerException_MessageAndInnerExcetion()
         {
             var target = new MutationException("1", new Exception("2"));
-            Assert.AreEqual("1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
         public void Constructor_MutationAndMessage_MutationAndMessage([Values] bool nullMutation)
         {
             var target = new MutationException(nullMutation ? null : Substitute.For<IMutation>(), "1");
-            Assert.AreEqual(nullMutation, target.Mutation == null);
-            Assert.AreEqual(nullMutation ? ": 1" : $"{target.Mutation.GetType().Name}: 1", target.Message);
-            Assert.IsNull(target.InnerException);
+            ClassicAssert.AreEqual(nullMutation, target.Mutation == null);
+            ClassicAssert.AreEqual(nullMutation ? ": 1" : $"{target.Mutation.GetType().Name}: 1", target.Message);
+            ClassicAssert.IsNull(target.InnerException);
         }
 
         [Test]   
         public void Constructor_MutationAndMessageAndInnerException_MutationAndMessageAndInnerExcetion([Values] bool nullMutation)
         {
             var target = new MutationException(nullMutation ? null : Substitute.For<IMutation>(), "1", new Exception("2"));
-            Assert.AreEqual(nullMutation, target.Mutation == null);
-            Assert.AreEqual(nullMutation ? ": 1" : $"{target.Mutation.GetType().Name}: 1", target.Message);
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual(nullMutation, target.Mutation == null);
+            ClassicAssert.AreEqual(nullMutation ? ": 1" : $"{target.Mutation.GetType().Name}: 1", target.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
                 serializationInfo,
                 new StreamingContext() }) as MutationException;
 
-            Assert.AreEqual("2", target.InnerException.Message);
+            ClassicAssert.AreEqual("2", target.InnerException.Message);
         }
 
         [Test]
@@ -82,7 +83,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
             var serializationInfo = new SerializationInfo(typeof(int), Substitute.For<IFormatterConverter>());
             target.GetObjectData(serializationInfo, new StreamingContext());
 
-            Assert.AreEqual(propertyValue, serializationInfo.GetValue("Mutation", typeof(IMutation)));
+            ClassicAssert.AreEqual(propertyValue, serializationInfo.GetValue("Mutation", typeof(IMutation)));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Reinsertions
 {
@@ -31,7 +32,7 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
                 target.SelectChromosomes(null, offspring, parents);
             });
 
-            Assert.AreEqual(actual.ParamName, "population");
+            ClassicAssert.AreEqual(actual.ParamName, "population");
         }
 
         [Test()]
@@ -54,7 +55,7 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
                 target.SelectChromosomes(population, null, parents);
             });
 
-            Assert.AreEqual(actual.ParamName, "offspring");
+            ClassicAssert.AreEqual(actual.ParamName, "offspring");
         }
 
         [Test()]
@@ -72,7 +73,7 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
                 target.SelectChromosomes(population, offspring, null);
             });
 
-            Assert.AreEqual(actual.ParamName, "parents");
+            ClassicAssert.AreEqual(actual.ParamName, "parents");
         }
 
         [Test()]
@@ -144,7 +145,7 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
            
             // Verify if no exception, so procted abstract method PerformSelectChromosomes was called.
             var actual = target.SelectChromosomes(population, offspring, parents);
-            Assert.AreEqual(0, actual.Count);
+            ClassicAssert.AreEqual(0, actual.Count);
         }
     }
 }

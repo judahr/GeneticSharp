@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using NSubstitute;
+using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests.Crossovers
 {
@@ -99,32 +100,32 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2 });
 
-            Assert.AreEqual(2, actual.Count);
+            ClassicAssert.AreEqual(2, actual.Count);
             var childOne = actual [0];
             var childTwo = actual [1];
-            Assert.AreEqual(8, childOne.Length);
-            Assert.AreEqual(8, childTwo.Length);
+            ClassicAssert.AreEqual(8, childOne.Length);
+            ClassicAssert.AreEqual(8, childTwo.Length);
 
-            Assert.AreEqual(8, childOne.GetGenes().Distinct().Count());
-            Assert.AreEqual(8, childTwo.GetGenes().Distinct().Count());
+            ClassicAssert.AreEqual(8, childOne.GetGenes().Distinct().Count());
+            ClassicAssert.AreEqual(8, childTwo.GetGenes().Distinct().Count());
 
-            Assert.AreEqual(1, childOne.GetGene(0).Value);
-            Assert.AreEqual(2, childOne.GetGene(1).Value);
-            Assert.AreEqual(3, childOne.GetGene(2).Value);
-            Assert.AreEqual(4, childOne.GetGene(3).Value);
-            Assert.AreEqual(6, childOne.GetGene(4).Value);
-            Assert.AreEqual(5, childOne.GetGene(5).Value);
-            Assert.AreEqual(7, childOne.GetGene(6).Value);
-            Assert.AreEqual(8, childOne.GetGene(7).Value);
+            ClassicAssert.AreEqual(1, childOne.GetGene(0).Value);
+            ClassicAssert.AreEqual(2, childOne.GetGene(1).Value);
+            ClassicAssert.AreEqual(3, childOne.GetGene(2).Value);
+            ClassicAssert.AreEqual(4, childOne.GetGene(3).Value);
+            ClassicAssert.AreEqual(6, childOne.GetGene(4).Value);
+            ClassicAssert.AreEqual(5, childOne.GetGene(5).Value);
+            ClassicAssert.AreEqual(7, childOne.GetGene(6).Value);
+            ClassicAssert.AreEqual(8, childOne.GetGene(7).Value);
 
-            Assert.AreEqual(2, childTwo.GetGene(0).Value);
-            Assert.AreEqual(4, childTwo.GetGene(1).Value);
-            Assert.AreEqual(3, childTwo.GetGene(2).Value);
-            Assert.AreEqual(8, childTwo.GetGene(3).Value);
-            Assert.AreEqual(7, childTwo.GetGene(4).Value);
-            Assert.AreEqual(5, childTwo.GetGene(5).Value);
-            Assert.AreEqual(6, childTwo.GetGene(6).Value);
-            Assert.AreEqual(1, childTwo.GetGene(7).Value);
+            ClassicAssert.AreEqual(2, childTwo.GetGene(0).Value);
+            ClassicAssert.AreEqual(4, childTwo.GetGene(1).Value);
+            ClassicAssert.AreEqual(3, childTwo.GetGene(2).Value);
+            ClassicAssert.AreEqual(8, childTwo.GetGene(3).Value);
+            ClassicAssert.AreEqual(7, childTwo.GetGene(4).Value);
+            ClassicAssert.AreEqual(5, childTwo.GetGene(5).Value);
+            ClassicAssert.AreEqual(6, childTwo.GetGene(6).Value);
+            ClassicAssert.AreEqual(1, childTwo.GetGene(7).Value);
         }
     }
 }
