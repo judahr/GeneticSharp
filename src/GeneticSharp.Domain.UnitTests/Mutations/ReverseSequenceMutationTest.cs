@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_LessThanThreeGenes_Exception()
         {
             var target = new ReverseSequenceMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(2);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(2);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),
@@ -34,7 +34,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_NoProbality_NoReverseSequence()
         {
             var target = new ReverseSequenceMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(4);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),
@@ -60,7 +60,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_ValidChromosome_ReverseSequence()
         {
             var target = new ReverseSequenceMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(6);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(6);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),

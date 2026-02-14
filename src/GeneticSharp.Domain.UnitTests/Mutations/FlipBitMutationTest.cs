@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_NotBinaryChromosome_Exception()
         {
             var target = new FlipBitMutation();
-            var chromosome =  Substitute.For<ChromosomeBase>(3);
+            var chromosome =  Substitute.ForPartsOf<ChromosomeBase>(3);
             chromosome.ReplaceGenes(0, new Gene[]
                 {
                     new Gene(0),

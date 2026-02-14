@@ -138,22 +138,21 @@ namespace GeneticSharp
             }
 
             
-            Parallel.For(0, MinSize-1, i=> 
-                //for (int i = chromosomes.Count; i < MinSize; i++)
+            //Parallel.For(0, MinSize-1, i=> 
+            for (int i = chromosomes.Count; i < MinSize; i++)
             {
                 var c = AdamChromosome.CreateNew();
-                c.CreateGenes();
 
                 if (c == null)
                 {
                     throw new InvalidOperationException("The Adam chromosome's 'CreateNew' method generated a null chromosome. This is a invalid behavior, please, check your chromosome code.");
                 }
-
+                c.CreateGenes();
                 c.ValidateGenes();
 
                 chromosomes.Add(c);
             }
-            );
+            //);
 
             CreateNewGeneration(chromosomes);
         }

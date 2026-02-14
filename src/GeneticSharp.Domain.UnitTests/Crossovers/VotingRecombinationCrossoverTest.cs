@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             var target = new VotingRecombinationCrossover(4, 3);
 
             // 1 4 3 5 2 6
-            var chromosome1 = Substitute.For<ChromosomeBase>(6);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(6);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(4),
@@ -43,14 +43,14 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(6)
             });
             
-            var child = Substitute.For<ChromosomeBase>(6);
+            var child = Substitute.ForPartsOf<ChromosomeBase>(6);
             child.GenerateGene(2).Returns(new Gene(22));
             child.GenerateGene(3).Returns(new Gene(33));
             child.GenerateGene(4).Returns(new Gene(44));
             chromosome1.CreateNew().Returns(child);
 
             // 1 2 4 3 5 6
-            var chromosome2 = Substitute.For<ChromosomeBase>(6);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(6);
             chromosome2.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -62,7 +62,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             });
 
             // 3 2 1 5 4 6
-            var chromosome3 = Substitute.For<ChromosomeBase>(6);
+            var chromosome3 = Substitute.ForPartsOf<ChromosomeBase>(6);
             chromosome3.ReplaceGenes(0, new Gene[]
             {
                 new Gene(3),
@@ -74,7 +74,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             });
       
             // 1 2 3 4 5 6
-            var chromosome4 = Substitute.For<ChromosomeBase>(6);
+            var chromosome4 = Substitute.ForPartsOf<ChromosomeBase>(6);
             chromosome4.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),

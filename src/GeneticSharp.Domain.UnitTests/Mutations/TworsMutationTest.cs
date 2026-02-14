@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_NoProbality_NoExchangeGenes()
         {
             var target = new TworsMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(4);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -44,7 +44,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_ValidChromosome_ExchangeGenes()
         {
             var target = new TworsMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(4);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome.ReplaceGenes(0, new Gene[]
                                                      {
                 new Gene(1),

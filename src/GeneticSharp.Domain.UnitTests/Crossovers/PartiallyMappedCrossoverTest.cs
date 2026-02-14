@@ -20,7 +20,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
         {
             var target = new PartiallyMappedCrossover();
 
-            var chromosome1 = Substitute.For<ChromosomeBase>(8);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(2),
@@ -31,9 +31,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(7),
                 new Gene(8)
             });
-            chromosome1.CreateNew().Returns(Substitute.For<ChromosomeBase>(8));
+            chromosome1.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(8));
 
-            var chromosome2 = Substitute.For<ChromosomeBase>(8);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome2.ReplaceGenes(0, new Gene[]
                                      {
                 new Gene(3),
@@ -45,7 +45,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(2),
                 new Gene(3)
             });
-            chromosome2.CreateNew().Returns(Substitute.For<ChromosomeBase>(8));
+            chromosome2.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(8));
 
             Assert.Catch <CrossoverException>(() =>
             {
@@ -59,7 +59,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             var target = new PartiallyMappedCrossover();
 
             // 1 2 3 4 5 6 7 8 
-            var chromosome1 = Substitute.For<ChromosomeBase>(8);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(2),
@@ -70,10 +70,10 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(7),
                 new Gene(8)
             });
-            chromosome1.CreateNew().Returns(Substitute.For<ChromosomeBase>(8));
+            chromosome1.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(8));
 
             // 3 7 5 1 6 8 2 4
-            var chromosome2 = Substitute.For<ChromosomeBase>(8);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome2.ReplaceGenes(0, new Gene[]
             {
                 new Gene(3),
@@ -85,7 +85,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(2),
                 new Gene(4)
             });
-            chromosome2.CreateNew().Returns(Substitute.For<ChromosomeBase>(8));
+            chromosome2.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(8));
 
             var rnd = Substitute.For<IRandomization>();
             rnd.GetUniqueInts(2, 0, 8).Returns(new int[] { 5, 3 });

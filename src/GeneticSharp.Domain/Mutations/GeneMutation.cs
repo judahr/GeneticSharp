@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace GeneticSharp
     /// <summary>
     /// Allows a gene value to self mutate.  The gene value the implements IGeneValueMutate defines what that mutation is.
     /// </summary>
+    [DisplayName("GeneMutation")]
     public class GeneMutation : MutationBase
     {
         Action<Gene> action;

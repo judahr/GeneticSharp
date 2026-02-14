@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
         [Test]
         public void Cross_ParentsWithTwoGenesProbabilityDiffPercents_DiffChildren()
         {
-            var chromosome1 = Substitute.For<ChromosomeBase>(4);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome1.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -26,9 +26,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(3),
                 new Gene(4),
             });
-            chromosome1.CreateNew().Returns(Substitute.For<ChromosomeBase>(4));
+            chromosome1.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(4));
 
-            var chromosome2 = Substitute.For<ChromosomeBase>(4);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome2.ReplaceGenes(0, new Gene[]
             {
                 new Gene(5),
@@ -36,7 +36,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(7),
                 new Gene(8)
             });
-            chromosome2.CreateNew().Returns(Substitute.For<ChromosomeBase>(4));
+            chromosome2.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(4));
             var parents = new List<IChromosome>() { chromosome1, chromosome2 };
 
             var rnd = Substitute.For<IRandomization>();

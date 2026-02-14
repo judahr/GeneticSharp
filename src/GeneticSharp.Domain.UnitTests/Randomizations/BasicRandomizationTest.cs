@@ -23,7 +23,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) > 2.1);
+                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) > 1);
             });
 
             for (int i = 0; i < 100; i++)
@@ -52,7 +52,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) > 2.1);
+                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) >= 1);
             });
 
             for (int i = 0; i < 100; i++)

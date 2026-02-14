@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_LessThanThreeGenes_Exception()
         {
             var target = new InsertionMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(2);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(2);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),
@@ -34,7 +34,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_NoProbality_NoInsertion()
         {
             var target = new InsertionMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(4);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),
@@ -60,7 +60,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_ValidChromosome_Insertion_To_Left()
         {
             var target = new InsertionMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(8);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),
@@ -94,7 +94,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_ValidChromosome_Insertion_To_Right()
         {
             var target = new InsertionMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(8);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome.ReplaceGenes(0, new Gene[]
                                     {
                 new Gene(1),

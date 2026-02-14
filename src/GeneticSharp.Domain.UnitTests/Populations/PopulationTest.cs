@@ -57,7 +57,7 @@ namespace GeneticSharp.Domain.UnitTests.Populations
         [Test]
         public void CreateInitialGeneration_AdamChromosomeCreateNewNull_Exception()
         {
-            var c = Substitute.For<ChromosomeBase>(4);
+            var c = Substitute.ForPartsOf<ChromosomeBase>(4);
             c.CreateNew().Returns((IChromosome)null);
             var population = new Population(2, 2, c);
 

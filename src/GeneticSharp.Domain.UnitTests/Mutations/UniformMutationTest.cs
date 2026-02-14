@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_NoIndexes_RandomOneIndex()
         {
             var target = new UniformMutation();
-            var chromosome = Substitute.For<ChromosomeBase>(3);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(3);
             chromosome.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -40,7 +40,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_InvalidIndexes_Exception()
         {
             var target = new UniformMutation(0, 3);
-            var chromosome = Substitute.For<ChromosomeBase>(3);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(3);
             chromosome.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -62,7 +62,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_Indexes_RandomIndexes()
         {
             var target = new UniformMutation(0, 2);
-            var chromosome = Substitute.For<ChromosomeBase>(3);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(3);
             chromosome.ReplaceGenes(0, new Gene[]
                                                      {
                 new Gene(1),
@@ -85,7 +85,7 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         public void Mutate_AllGenesMutablesTrue_AllGenesMutaed()
         {
             var target = new UniformMutation(true);
-            var chromosome = Substitute.For<ChromosomeBase>(3);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(3);
             chromosome.ReplaceGenes(0, new Gene[]
                                  {
                 new Gene(1),

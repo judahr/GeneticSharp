@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace GeneticSharp.Domain.Mutations
     /// <summary>
     /// Performs a random mutation of one supplied.
     /// </summary>
+    [DisplayName("RandomMutation")]
     public class RandomMutation : IMutation
     {
         private readonly bool _isOrdered;

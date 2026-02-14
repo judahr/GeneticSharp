@@ -1,4 +1,5 @@
 ﻿using System;
+using GeneticSharp.Domain.Mutations;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
@@ -14,14 +15,19 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         {
             var actual = MutationService.GetMutationTypes();
 
-            ClassicAssert.AreEqual(7, actual.Count);
-            ClassicAssert.AreEqual(typeof(DisplacementMutation), actual[0]);
-            ClassicAssert.AreEqual(typeof(FlipBitMutation), actual[1]);
-            ClassicAssert.AreEqual(typeof(InsertionMutation), actual[2]);
-            ClassicAssert.AreEqual(typeof(PartialShuffleMutation), actual[3]);
-            ClassicAssert.AreEqual(typeof(ReverseSequenceMutation), actual[4]);
-            ClassicAssert.AreEqual(typeof(TworsMutation), actual[5]);
-            ClassicAssert.AreEqual(typeof(UniformMutation), actual[6]);
+            ClassicAssert.LessOrEqual(10, actual.Count);
+            int i = 0;
+            ClassicAssert.AreEqual(typeof(DeletionMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(DisplacementMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(FlipBitMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(GeneMutation), actual[i]); i++;
+
+            ClassicAssert.AreEqual(typeof(InsertionMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(PartialShuffleMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(RandomMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(ReverseSequenceMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(TworsMutation), actual[i]); i++;
+            ClassicAssert.AreEqual(typeof(UniformMutation), actual[i]); i++;
         }
 
         [Test()]
@@ -29,14 +35,18 @@ namespace GeneticSharp.Domain.UnitTests.Mutations
         {
             var actual = MutationService.GetMutationNames();
 
-            ClassicAssert.AreEqual(7, actual.Count);
-            ClassicAssert.AreEqual("Displacement", actual[0]);
-            ClassicAssert.AreEqual("Flip Bit", actual[1]);
-            ClassicAssert.AreEqual("Insertion", actual[2]);
-            ClassicAssert.AreEqual("Partial Shuffle (PSM)", actual[3]);
-            ClassicAssert.AreEqual("Reverse Sequence (RSM)", actual[4]);
-            ClassicAssert.AreEqual("Twors", actual[5]);
-            ClassicAssert.AreEqual("Uniform", actual[6]);
+            ClassicAssert.LessOrEqual(10, actual.Count);
+            int i = 0;
+            ClassicAssert.AreEqual("Deletion", actual[i]); i++;
+            ClassicAssert.AreEqual("Displacement", actual[i]);i++;
+            ClassicAssert.AreEqual("Flip Bit", actual[i]); i++;
+            ClassicAssert.AreEqual("GeneMutation", actual[i]); i++;
+            ClassicAssert.AreEqual("Insertion", actual[i]); i++;
+            ClassicAssert.AreEqual("Partial Shuffle (PSM)", actual[i]); i++;
+            ClassicAssert.AreEqual("RandomMutation", actual[i]); i++; 
+            ClassicAssert.AreEqual("Reverse Sequence (RSM)", actual[i]); i++;            
+            ClassicAssert.AreEqual("Twors", actual[i]); i++;
+            ClassicAssert.AreEqual("Uniform", actual[i]); i++;
         }
 
         [Test()]

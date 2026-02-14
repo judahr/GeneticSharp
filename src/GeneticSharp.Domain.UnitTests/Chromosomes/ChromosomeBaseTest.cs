@@ -16,7 +16,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
             {
                 try
                 {
-                    Substitute.For<ChromosomeBase>(1);
+                    Substitute.ForPartsOf<ChromosomeBase>(1);
                 }
                 catch (Exception ex)
                 {
@@ -28,10 +28,10 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void CompareTo_Others_DiffResults()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
             target.Fitness = 0.5;
 
-            var other = Substitute.For<ChromosomeBase>(2);
+            var other = Substitute.ForPartsOf<ChromosomeBase>(2);
             other.Fitness = 0.5;
 
             ClassicAssert.AreEqual(-1, target.CompareTo(null));
@@ -47,7 +47,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void Fitness_AnyChange_Null()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
             ClassicAssert.IsFalse(target.Fitness.HasValue);
             target.Fitness = 0.5;
             ClassicAssert.IsTrue(target.Fitness.HasValue);
@@ -72,7 +72,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void ReplaceGene_InvalidIndex_Exception()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
@@ -88,7 +88,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void ReplaceGene_ValidIndex_Replaced()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             target.ReplaceGene(0, new Gene(2));
             target.ReplaceGene(1, new Gene(6));
@@ -102,7 +102,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void ReplaceGenes_InvalidIndex_Exception()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             Assert.Catch<ArgumentOutOfRangeException>(() =>
             {
@@ -118,7 +118,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void ReplaceGenes_NullGenes_Exception()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             Assert.Catch<ArgumentNullException>(() =>
             {
@@ -129,7 +129,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void ReplaceGenes_ValidIndex_Replaced()
         {
-            var target = Substitute.For<ChromosomeBase>(4);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(4);
 
             target.ReplaceGenes(0, new Gene[] { new Gene(1), new Gene(2) });
 
@@ -160,7 +160,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void Resize_InvalidLength_Exception()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             Assert.Catch<ArgumentException>(() =>
             {
@@ -171,7 +171,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void Resize_ToLowerLength_TruncateGenes()
         {
-            var target = Substitute.For<ChromosomeBase>(4);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(4);
             target.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -189,7 +189,7 @@ namespace GeneticSharp.Domain.UnitTests.Chromosomes
         [Test]
         public void Resize_ToGreaterLength_KeepOldGenesAndNullValueNewOnes()
         {
-            var target = Substitute.For<ChromosomeBase>(2);
+            var target = Substitute.ForPartsOf<ChromosomeBase>(2);
             target.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),

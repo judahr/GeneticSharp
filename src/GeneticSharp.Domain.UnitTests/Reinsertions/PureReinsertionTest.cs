@@ -13,7 +13,7 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
         public void SelectChromosomes_offspringSizeEqualsParentsSizeAndGreaterThanMinSizeAndLowerThanMaxSize_Selectoffspring()
         {
             var target = new PureReinsertion();
-            var chromosome = Substitute.For<ChromosomeBase>(2);
+            var chromosome = Substitute.ForPartsOf<ChromosomeBase>(2);
 
             var population = new Population(2, 6, chromosome);
             var offspring = new List<IChromosome>() {
@@ -21,10 +21,10 @@ namespace GeneticSharp.Domain.UnitTests.Reinsertions
             };
 
             var parents = new List<IChromosome>() {
-                Substitute.For<ChromosomeBase> (2),
-                Substitute.For<ChromosomeBase> (2),
-                Substitute.For<ChromosomeBase> (2),
-                Substitute.For<ChromosomeBase> (2)
+                Substitute.ForPartsOf<ChromosomeBase> (2),
+                Substitute.ForPartsOf<ChromosomeBase> (2),
+                Substitute.ForPartsOf<ChromosomeBase> (2),
+                Substitute.ForPartsOf<ChromosomeBase> (2)
             };
 
             var selected = target.SelectChromosomes(population, offspring, parents);

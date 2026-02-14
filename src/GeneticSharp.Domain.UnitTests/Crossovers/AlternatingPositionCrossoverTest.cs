@@ -24,7 +24,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
         {
             var target = new AlternatingPositionCrossover();
 
-            var chromosome1 = Substitute.For<ChromosomeBase>(8);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(8),
                 new Gene(2),
@@ -37,7 +37,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             });
 
             // 3 7 5 1 6 8 2 4
-            var chromosome2 = Substitute.For<ChromosomeBase>(8);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome2.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(2),
@@ -61,7 +61,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             var target = new AlternatingPositionCrossover();
 
             // 1 2 3 4 5 6 7 8
-            var chromosome1 = Substitute.For<ChromosomeBase>(8);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(8);
+            
+            ;
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(2),
@@ -73,11 +75,11 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(8)
             });
 
-            var child1 = Substitute.For<ChromosomeBase>(8);
+            var child1 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome1.CreateNew().Returns(child1);
 
             // 3 7 5 1 6 8 2 4
-            var chromosome2 = Substitute.For<ChromosomeBase>(8);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome2.ReplaceGenes(0, new Gene[] {
                 new Gene(3),
                 new Gene(7),
@@ -88,7 +90,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(2),
                 new Gene(4)
             });
-            var child2 = Substitute.For<ChromosomeBase>(8);
+            var child2 = Substitute.ForPartsOf<ChromosomeBase>(8);
             chromosome2.CreateNew().Returns(child2);
 
             var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2 });

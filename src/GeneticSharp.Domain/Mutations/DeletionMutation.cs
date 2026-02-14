@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace GeneticSharp.Domain.Mutations
 {
     /// <summary>
     /// Replaces a gene with the supplied replacement gene, which should do nothing.
     /// </summary>
+    /// 
+    [DisplayName("Deletion")]
     public class DeletionMutation :MutationBase
     {
         private Gene _replacementGene;

@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
         [Test]
         public void Cross_ThreeParents_OneChildren()
         {
-            var chromosome1 = Substitute.For<ChromosomeBase>(4);
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome1.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -26,9 +26,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(3),
                 new Gene(4),
             });
-            chromosome1.CreateNew().Returns(Substitute.For<ChromosomeBase>(4));
+            chromosome1.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(4));
 
-            var chromosome2 = Substitute.For<ChromosomeBase>(4);
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome2.ReplaceGenes(0, new Gene[]
             {
                 new Gene(1),
@@ -36,9 +36,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(6),
                 new Gene(4)
             });
-            chromosome2.CreateNew().Returns(Substitute.For<ChromosomeBase>(4));
+            chromosome2.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(4));
 
-            var chromosome3 = Substitute.For<ChromosomeBase>(4);
+            var chromosome3 = Substitute.ForPartsOf<ChromosomeBase>(4);
             chromosome3.ReplaceGenes(0, new Gene[]
             {
                 new Gene(10),
@@ -46,7 +46,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
                 new Gene(12),
                 new Gene(13)
             });
-            chromosome3.CreateNew().Returns(Substitute.For<ChromosomeBase>(4));
+            chromosome3.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(4));
 
             var parents = new List<IChromosome>() { chromosome1, chromosome2, chromosome3 };
 
