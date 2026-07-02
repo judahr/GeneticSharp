@@ -21,7 +21,7 @@ namespace GeneticSharp
         public CutAndSpliceCrossover()
             : base(2, 2)
         {
-            IsOrdered = false;
+            RequiredOrdering = GeneOrdering.Positional;
         }
         #endregion
 

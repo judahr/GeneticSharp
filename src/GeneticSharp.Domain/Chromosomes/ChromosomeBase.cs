@@ -45,6 +45,16 @@ namespace GeneticSharp
                 return m_length;
             }
         }
+
+        /// <summary>
+        /// Gets the structural guarantee this chromosome makes about its genes.
+        /// </summary>
+        /// <remarks>
+        /// Defaults to <see cref="GeneOrdering.Positional"/> (each index is an independent slot). Override
+        /// this in derived chromosomes whose genes must all appear exactly once (<see cref="GeneOrdering.Set"/>)
+        /// or whose sequence encodes meaning (<see cref="GeneOrdering.Permutation"/>).
+        /// </remarks>
+        public virtual GeneOrdering GeneOrdering => GeneOrdering.Positional;
         #endregion
 
         #region Methods

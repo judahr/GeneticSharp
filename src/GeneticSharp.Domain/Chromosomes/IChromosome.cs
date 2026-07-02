@@ -26,6 +26,12 @@ namespace GeneticSharp
         /// </summary>
         /// <value>The length.</value>
         int Length { get; }
+
+        /// <summary>
+        /// Gets the structural guarantee this chromosome makes about its genes.
+        /// </summary>
+        /// <value>The gene ordering.</value>
+        GeneOrdering GeneOrdering { get; }
         #endregion
 
         #region Methods

@@ -29,5 +29,7 @@
             var clone = base.Clone() as OrderedChromosomeStub;
             return clone;
         }
+
+        public override GeneOrdering GeneOrdering => GeneOrdering.Permutation;
     }
 }

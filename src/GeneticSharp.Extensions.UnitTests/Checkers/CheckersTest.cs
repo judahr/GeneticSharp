@@ -20,7 +20,10 @@ namespace GeneticSharp.Extensions.UnitTests.Checkers
             int movesAhead = 10;
             int boardSize = 10;
             var selection = new EliteSelection();
-            var crossover = new OrderedCrossover();
+            // Each gene is an independently-generated move (not a permutation of a fixed
+            // move set), so this chromosome is Positional; OrderedCrossover requires
+            // Permutation and only "worked" before by luck (moves are rarely equal).
+            var crossover = new UniformCrossover();
             var mutation = new TworsMutation();
             var chromosome = new CheckersChromosome(movesAhead, boardSize);
             var fitness = new CheckersFitness(new CheckersBoard(boardSize));

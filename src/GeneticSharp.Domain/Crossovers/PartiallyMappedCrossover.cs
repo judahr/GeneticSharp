@@ -23,7 +23,7 @@ namespace GeneticSharp
         /// </summary>
         public PartiallyMappedCrossover() : base(2, 2, 3)
         {
-            IsOrdered = true;
+            RequiredOrdering = GeneOrdering.Permutation;
         }
         #endregion
 

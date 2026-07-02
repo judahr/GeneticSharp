@@ -36,9 +36,9 @@ namespace GeneticSharp
 
         #region Properties
         /// <summary>
-        /// Gets or sets a value indicating whether the operator is ordered (if can keep the chromosome order).
+        /// Gets or sets the gene ordering a chromosome must declare (or exceed) for this crossover to be valid on it.
         /// </summary>
-        public bool IsOrdered { get; protected set; }
+        public GeneOrdering RequiredOrdering { get; protected set; }
 
         /// <summary>
         /// Gets the number of parents need for cross.
@@ -82,6 +82,12 @@ namespace GeneticSharp
             {
                 throw new CrossoverException(
                     this, "A chromosome should have, at least, {0} genes. {1} has only {2} gene.".With(MinChromosomeLength, firstParent.GetType().Name, firstParent.Length));
+            }
+
+            if (firstParent.GeneOrdering < RequiredOrdering)
+            {
+                throw new CrossoverException(
+                    this, "{0} requires {1} gene ordering, but chromosome {2} declares {3}.".With(GetType().Name, RequiredOrdering, firstParent.GetType().Name, firstParent.GeneOrdering));
             }
 
             return PerformCross(parents);

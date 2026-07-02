@@ -6,8 +6,8 @@
     public interface IChromosomeOperator
     {
         /// <summary>
-        /// Gets a value indicating whether the operator is ordered (if can keep the chromosome order).
+        /// Gets the gene ordering a chromosome must declare (or exceed) for this operator to be valid on it.
         /// </summary>
-        bool IsOrdered { get; }
+        GeneOrdering RequiredOrdering { get; }
     }
 }

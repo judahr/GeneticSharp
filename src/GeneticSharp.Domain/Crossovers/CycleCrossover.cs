@@ -27,7 +27,7 @@ namespace GeneticSharp
         public CycleCrossover()
             : base(2, 2)
         {
-            IsOrdered = true;
+            RequiredOrdering = GeneOrdering.Permutation;
         }
         #endregion
 

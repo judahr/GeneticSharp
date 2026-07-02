@@ -22,7 +22,8 @@ namespace GeneticSharp
         /// </summary>
         public DisplacementMutation()
         {
-            IsOrdered = true;
+            // Shifts existing genes in place, so it never breaks Set/Permutation invariants.
+            RequiredOrdering = GeneOrdering.Positional;
         }
         #endregion
 

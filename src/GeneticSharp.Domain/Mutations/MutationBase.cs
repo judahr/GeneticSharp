@@ -7,9 +7,9 @@
     {
         #region Properties
         /// <summary>
-        /// Gets or sets a value indicating whether the operator is ordered (if can keep the chromosome order).
+        /// Gets or sets the gene ordering a chromosome must declare (or exceed) for this mutation to be valid on it.
         /// </summary>
-        public bool IsOrdered { get; protected set; }
+        public GeneOrdering RequiredOrdering { get; protected set; }
         #endregion
 
         #region Methods
@@ -21,6 +21,12 @@
         public void Mutate(IChromosome chromosome, float probability)
         {
             ExceptionHelper.ThrowIfNull("chromosome", chromosome);
+
+            if (chromosome.GeneOrdering < RequiredOrdering)
+            {
+                throw new MutationException(
+                    this, "{0} requires {1} gene ordering, but chromosome {2} declares {3}.".With(GetType().Name, RequiredOrdering, chromosome.GetType().Name, chromosome.GeneOrdering));
+            }
 
             PerformMutate(chromosome, probability);
         }

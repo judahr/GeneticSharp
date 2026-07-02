@@ -30,7 +30,7 @@ namespace GeneticSharp
         /// </summary>
         public AlternatingPositionCrossover() : base(2, 2)
         {
-            IsOrdered = true;
+            RequiredOrdering = GeneOrdering.Permutation;
         }
 
         /// <summary>

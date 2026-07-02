@@ -22,7 +22,8 @@ namespace GeneticSharp
         /// </summary>
         public ReverseSequenceMutation()
         {
-            IsOrdered = true;
+            // Reorders existing genes in place, so it never breaks Set/Permutation invariants.
+            RequiredOrdering = GeneOrdering.Positional;
         }
         #endregion
 

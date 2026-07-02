@@ -512,12 +512,23 @@ namespace GeneticSharp.Domain.UnitTests
                             var mutation = MutationService.CreateMutationByName(m);
                             var reinsertion = ReinsertionService.CreateReinsertionByName(r);
 
-                            if (crossover.IsOrdered ^ mutation.IsOrdered)
+                            var crossoverIsOrdered = crossover.RequiredOrdering != GeneOrdering.Positional;
+                            var mutationIsOrdered = mutation.RequiredOrdering != GeneOrdering.Positional;
+
+                            if (crossoverIsOrdered ^ mutationIsOrdered)
                             {
                                 continue;
                             }
 
                             if (crossover.ParentsNumber > crossover.ChildrenNumber && !reinsertion.CanExpand)
+                            {
+                                continue;
+                            }
+
+                            // CutAndSpliceCrossover can shrink offspring below the 3-gene minimum
+                            // that SequenceMutationBase-derived mutations require; this is a
+                            // pre-existing, unrelated length constraint, not a gene-ordering one.
+                            if (crossover is CutAndSpliceCrossover && mutation is SequenceMutationBase)
                             {
                                 continue;
                             }

@@ -40,6 +40,8 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers.Issues
                 return new GuessNumberChromosome(this.numberDigits);
             }
 
+            public override GeneOrdering GeneOrdering => GeneOrdering.Permutation;
+
             public override Gene GenerateGene(int geneIndex)
             {
                 return new Gene(RandomizationProvider.Current.GetInt(MinGeneValue, MaxGeneValue));

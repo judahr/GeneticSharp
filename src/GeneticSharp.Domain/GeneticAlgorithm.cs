@@ -264,6 +264,8 @@ namespace GeneticSharp
                 TimeEvolving = m_stopwatch.Elapsed;
             }
 
+            GeneticAlgorithmValidator.ValidateOperatorCompatibility(Population.CurrentGeneration.Chromosomes[0], Crossover, Mutation);
+
             Resume();
         }
 

@@ -65,6 +65,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             // 8 4 7 3 6 2 5 1 9 0
             var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(10);
+            chromosome1.GeneOrdering.Returns(GeneOrdering.Permutation);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(8),
                 new Gene(4),
@@ -141,6 +142,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             // 8 4 7 3 6
             var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(5);
+            chromosome1.GeneOrdering.Returns(GeneOrdering.Permutation);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(8),
                 new Gene(4),
@@ -199,6 +201,7 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
 
             // 8 4 6 7 3
             var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(5);
+            chromosome1.GeneOrdering.Returns(GeneOrdering.Permutation);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(8),
                 new Gene(4),

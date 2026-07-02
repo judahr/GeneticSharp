@@ -58,8 +58,9 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
         {
             var target = new PartiallyMappedCrossover();
 
-            // 1 2 3 4 5 6 7 8 
+            // 1 2 3 4 5 6 7 8
             var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(8);
+            chromosome1.GeneOrdering.Returns(GeneOrdering.Permutation);
             chromosome1.ReplaceGenes(0, new Gene[] {
                 new Gene(1),
                 new Gene(2),

@@ -17,7 +17,8 @@ namespace GeneticSharp
         /// </summary>
         public TworsMutation()
         {
-            IsOrdered = true;
+            // Swaps two existing gene values, so it never breaks Set/Permutation invariants.
+            RequiredOrdering = GeneOrdering.Positional;
         }
         #endregion
 

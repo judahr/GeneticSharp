@@ -13,18 +13,18 @@ namespace GeneticSharp.Domain.Mutations
     [DisplayName("RandomMutation")]
     public class RandomMutation : IMutation
     {
-        private readonly bool _isOrdered;
+        private readonly GeneOrdering _requiredOrdering;
         private readonly IMutation[] _mutations;
         private RandomMutation() { }
 
-        public RandomMutation(bool isOrdered, params IMutation[] mutations)
+        public RandomMutation(GeneOrdering requiredOrdering, params IMutation[] mutations)
         {
-            _isOrdered = isOrdered;
+            _requiredOrdering = requiredOrdering;
             _mutations = mutations;
 
             if (_mutations.Length == 0) { throw new ArgumentException("Requires at least one mutation type."); }
         }
-        public bool IsOrdered => _isOrdered;
+        public GeneOrdering RequiredOrdering => _requiredOrdering;
 
         public void Mutate(IChromosome chromosome, float probability)
         {

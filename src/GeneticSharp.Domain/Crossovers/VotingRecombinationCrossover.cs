@@ -46,7 +46,7 @@ namespace GeneticSharp
                 throw new ArgumentOutOfRangeException(nameof(threshold), "The threshold should be smaller or equal to the parents number.");
             }
 
-            IsOrdered = false;
+            RequiredOrdering = GeneOrdering.Positional;
             _threshold = threshold;
         }
 

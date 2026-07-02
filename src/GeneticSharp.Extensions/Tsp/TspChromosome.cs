@@ -40,6 +40,11 @@ namespace GeneticSharp.Extensions
         public double Distance { get; internal set; }
         #endregion
 
+        /// <summary>
+        /// Every city index must appear exactly once and the visiting order is what's being evolved.
+        /// </summary>
+        public override GeneOrdering GeneOrdering => GeneOrdering.Permutation;
+
         #region implemented abstract members of ChromosomeBase
         /// <summary>
         /// Generates the gene for the specified index.

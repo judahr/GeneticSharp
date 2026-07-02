@@ -46,7 +46,7 @@ namespace GeneticSharp
         public OrderedCrossover()
             : base(2, 2)
         {
-            IsOrdered = true;
+            RequiredOrdering = GeneOrdering.Permutation;
         }
         #endregion
 
