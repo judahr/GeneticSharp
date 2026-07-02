@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GeneticSharp.Extensions
 {
@@ -12,7 +13,14 @@ namespace GeneticSharp.Extensions
         private static readonly IRandomization s_randomization = RandomizationProvider.Current;
         private static readonly IList<string> s_availableSelections = SelectionService.GetSelectionNames();
         private static readonly IList<string> s_availableCrossovers = CrossoverService.GetCrossoverNames();
-        private static readonly IList<string> s_availableMutations = MutationService.GetMutationNames();
+
+        private static readonly IList<Type> s_mutationTypes = MutationService.GetMutationTypes();
+
+        // Some mutations (e.g. Deletion, GeneMutation, RandomMutation) require constructor
+        // arguments that can't be supplied by name-based creation, so they can't be picked here.
+        private static readonly IList<string> s_availableMutations = MutationService.GetMutationNames()
+            .Where((name, i) => s_mutationTypes[i].GetConstructor(Type.EmptyTypes) != null)
+            .ToList();
         #endregion
 
         #region Constructor           

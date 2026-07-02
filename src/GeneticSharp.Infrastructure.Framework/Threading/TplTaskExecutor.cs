@@ -24,8 +24,7 @@ namespace GeneticSharp
 
                 try
                 {
-                    //result = Parallel.For(0, Tasks.Count, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (i, state) =>
-                    Parallel.ForEach(Tasks, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (task, state) =>
+                    result = Parallel.ForEach(Tasks, new ParallelOptions() { CancellationToken = CancellationTokenSource.Token }, (task, state) =>
                     {
                         // Execute the target function (fitness).
                         task();

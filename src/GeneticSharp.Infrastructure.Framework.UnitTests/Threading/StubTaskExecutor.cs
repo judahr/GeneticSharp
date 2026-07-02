@@ -6,7 +6,7 @@ namespace GeneticSharp.Infrastructure.Framework.UnitTests.Threading
 {
     public class StubTaskExecutor : TaskExecutorBase
     {
-        public ConcurrentBag<Action> GetTasks()
+        public ConcurrentQueue<Action> GetTasks()
         {
             return Tasks;
         }

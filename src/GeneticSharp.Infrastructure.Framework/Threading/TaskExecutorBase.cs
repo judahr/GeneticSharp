@@ -16,7 +16,7 @@ namespace GeneticSharp
         /// </summary>
         protected TaskExecutorBase()
         {
-            Tasks = new ConcurrentBag<Action>();
+            Tasks = new ConcurrentQueue<Action>();
             Timeout = TimeSpan.MaxValue;
         }
 
@@ -37,7 +37,7 @@ namespace GeneticSharp
         /// <summary>
         /// Gets the tasks.
         /// </summary>
-        protected ConcurrentBag<Action> Tasks { get; private set; }
+        protected ConcurrentQueue<Action> Tasks { get; private set; }
 
         /// <summary>
         /// Gets a value indicating whether this
@@ -52,7 +52,7 @@ namespace GeneticSharp
         /// <param name="task">The task.</param>
         public void Add(Action task)
         {
-            Tasks.Add(task);
+            Tasks.Enqueue(task);
         }
 
         /// <summary>

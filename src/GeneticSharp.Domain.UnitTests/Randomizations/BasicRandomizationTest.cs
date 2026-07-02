@@ -23,7 +23,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) > 1);
+                ClassicAssert.IsTrue(target.GetFloat(0, 2.2f) > 2.1);
             });
 
             for (int i = 0; i < 100; i++)
@@ -52,7 +52,7 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
 
             FlowAssert.IsAtLeastOneAttemptOk(1000, () =>
             {
-                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) >= 1);
+                ClassicAssert.IsTrue(target.GetDouble(0, 2.2) > 2.1);
             });
 
             for (int i = 0; i < 100; i++)
@@ -185,20 +185,29 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
         [Test]
         public void ResetSeed_GetInt_SameResults()
         {
-            BasicRandomization.ResetSeed(1);
-            var target = new BasicRandomization();
-            var actual = new int[10];
-
-            for (int i = 0; i < actual.Length; i++)
+            try
             {
-                actual[i] = target.GetInt(int.MinValue, int.MaxValue);
+                BasicRandomization.ResetSeed(1);
+                var target = new BasicRandomization();
+                var actual = new int[10];
+
+                for (int i = 0; i < actual.Length; i++)
+                {
+                    actual[i] = target.GetInt(int.MinValue, int.MaxValue);
+                }
+
+                BasicRandomization.ResetSeed(1);
+
+                for (int i = 0; i < actual.Length; i++)
+                {
+                    ClassicAssert.AreEqual(actual[i], target.GetInt(int.MinValue, int.MaxValue));
+                }
             }
-
-            BasicRandomization.ResetSeed(1);
-
-            for (int i = 0; i < actual.Length; i++)
+            finally
             {
-                ClassicAssert.AreEqual(actual[i], target.GetInt(int.MinValue, int.MaxValue));
+                // The seed is static/shared state, so it must be cleared or every subsequent
+                // test in the process would keep drawing from this deterministic sequence.
+                BasicRandomization.ResetSeed(null);
             }
         }
     }

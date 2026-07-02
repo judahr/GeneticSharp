@@ -10,8 +10,7 @@ namespace GeneticSharp
         /// </summary>
         static RandomizationProvider()
         {
-            //Current = new FastRandomRandomization();
-            Current = new BasicRandomization();
+            Current = new FastRandomRandomization();
         }
 
         /// <summary>

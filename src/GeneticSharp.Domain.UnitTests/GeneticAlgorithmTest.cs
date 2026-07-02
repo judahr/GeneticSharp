@@ -492,7 +492,10 @@ namespace GeneticSharp.Domain.UnitTests
         {
             var selections = SelectionService.GetSelectionNames();
             var crossovers = CrossoverService.GetCrossoverNames();
-            var mutations = MutationService.GetMutationNames().Where(m => !m.Equals("Flip Bit") && !m.Equals("Deletion"));
+            // GeneMutation and RandomMutation require constructor arguments (a gene mutation delegate,
+            // and a set of wrapped mutations, respectively) that can't be supplied by name-based creation,
+            // same reason "Deletion" is excluded here.
+            var mutations = MutationService.GetMutationNames().Where(m => !m.Equals("Flip Bit") && !m.Equals("Deletion") && !m.Equals("GeneMutation") && !m.Equals("RandomMutation"));
             var reinsertions = ReinsertionService.GetReinsertionNames();
             var chromosome = new OrderedChromosomeStub();
 

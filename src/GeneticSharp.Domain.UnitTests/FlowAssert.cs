@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using NUnit.Framework.Legacy;
 
 namespace GeneticSharp.Domain.UnitTests
@@ -22,7 +23,7 @@ namespace GeneticSharp.Domain.UnitTests
             }
 
             bool ok = false;
-        
+
             foreach (var a in flows)
             {
                 try
@@ -36,6 +37,7 @@ namespace GeneticSharp.Domain.UnitTests
                     Debug.WriteLine(ex.Message);
                     Debug.WriteLine(ex.StackTrace);
                     ok = false;
+                    DiscardRecordedAssertionFailure();
                 }
             }
 
@@ -66,10 +68,22 @@ namespace GeneticSharp.Domain.UnitTests
                     Debug.WriteLine(ex.StackTrace);
                     ok = false;
                     failedMessage = ex.Message;
+                    DiscardRecordedAssertionFailure();
                 }
             }
 
             ClassicAssert.IsTrue(ok, $"All {maxAttempts} attempts failed\n\n{failedMessage}");
+        }
+
+        /// <summary>
+        /// NUnit 4 permanently records every failed assertion into the current test's result
+        /// (used to build "Multiple failures" reports), even if the thrown AssertionException
+        /// is caught and the attempt is retried. Without discarding it here, a single failed
+        /// attempt would fail the overall test even though a later attempt succeeds.
+        /// </summary>
+        private static void DiscardRecordedAssertionFailure()
+        {
+            TestExecutionContext.CurrentContext.CurrentResult.AssertionResults.Clear();
         }
     }
 }

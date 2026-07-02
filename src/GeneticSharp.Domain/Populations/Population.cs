@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GeneticSharp
 {
@@ -137,8 +136,6 @@ namespace GeneticSharp
                 chromosomes.AddRange(_seedPopulation);
             }
 
-            
-            //Parallel.For(0, MinSize-1, i=> 
             for (int i = chromosomes.Count; i < MinSize; i++)
             {
                 var c = AdamChromosome.CreateNew();
@@ -147,12 +144,11 @@ namespace GeneticSharp
                 {
                     throw new InvalidOperationException("The Adam chromosome's 'CreateNew' method generated a null chromosome. This is a invalid behavior, please, check your chromosome code.");
                 }
-                c.CreateGenes();
+
                 c.ValidateGenes();
 
                 chromosomes.Add(c);
             }
-            //);
 
             CreateNewGeneration(chromosomes);
         }
