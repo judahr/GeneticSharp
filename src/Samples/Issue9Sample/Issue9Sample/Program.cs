@@ -4,14 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
-using GeneticSharp.Domain;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
-using GeneticSharp.Extensions.Tsp;
+using GeneticSharp;
+using GeneticSharp.Extensions;
 
 namespace Issue9Sample
 {

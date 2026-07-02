@@ -5,20 +5,18 @@
   <Import Project="..\..\..\msbuilds\GeneticSharp.app.targets" />
   
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <OutputType>Exe</OutputType>    
-    <RuntimeIdentifiers>win7-x86;osx-x64;linux-x64</RuntimeIdentifiers>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RuntimeIdentifiers>win-x86;osx-x64;linux-x64</RuntimeIdentifiers>
+    <!-- Demonstrates preloading a population from a serialized generation; BinaryFormatter
+         is obsolete and disabled at runtime on modern .NET, but replacing it is outside the
+         scope of this sample. -->
+    <NoWarn>$(NoWarn);SYSLIB0011</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="GeneticSharp.Domain">
-      <HintPath>..\..\..\GeneticSharp.Domain\bin\Debug\netstandard2.0\GeneticSharp.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="GeneticSharp.Infrastructure.Framework">
-      <HintPath>..\..\..\GeneticSharp.Infrastructure.Framework\bin\Debug\netstandard2.0\GeneticSharp.Infrastructure.Framework.dll</HintPath>
-    </Reference>
-     <Reference Include="GeneticSharp.Extensions">
-      <HintPath>..\..\..\GeneticSharp.Extensions\bin\Debug\netstandard2.0\GeneticSharp.Extensions.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\GeneticSharp.Domain\GeneticSharp.Domain.csproj" />
+    <ProjectReference Include="..\..\..\GeneticSharp.Infrastructure.Framework\GeneticSharp.Infrastructure.Framework.csproj" />
+    <ProjectReference Include="..\..\..\GeneticSharp.Extensions\GeneticSharp.Extensions.csproj" />
   </ItemGroup>
 </Project>

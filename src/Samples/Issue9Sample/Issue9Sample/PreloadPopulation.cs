@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp;
 
 namespace Issue9Sample
 {
