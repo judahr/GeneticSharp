@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace GeneticSharp
 {
@@ -67,14 +66,22 @@ namespace GeneticSharp
                     "The length is {0}, but the possible unique values between {1} (inclusive) and {2} (exclusive) are {3}.".With(length, min, max, diff));
             }
 
-            var orderedValues = Enumerable.Range(min, diff).ToList();
+            // Partial Fisher-Yates: swap a random remaining candidate into position i and take
+            // it, instead of RemoveAt-ing from a list (which shifts every following element).
+            var pool = new int[diff];
+
+            for (int i = 0; i < diff; i++)
+            {
+                pool[i] = min + i;
+            }
+
             var ints = new int[length];
 
             for (int i = 0; i < length; i++)
             {
-                var removeIndex = GetInt(0, orderedValues.Count);
-                ints[i] = orderedValues[removeIndex];
-                orderedValues.RemoveAt(removeIndex);
+                var j = GetInt(i, diff);
+                (pool[i], pool[j]) = (pool[j], pool[i]);
+                ints[i] = pool[i];
             }
 
             return ints;

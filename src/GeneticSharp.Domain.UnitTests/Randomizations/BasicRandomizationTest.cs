@@ -182,6 +182,32 @@ namespace GeneticSharp.Domain.UnitTests.Randomizations
             });
         }
 
+        /// <summary>
+        /// Characterization test: pins the exact index->value mapping for a fixed seed, so any
+        /// future rewrite that still returns a valid set of unique ints - but a different one for
+        /// the same underlying draws - gets caught, even though "Distinct().Count()"-style
+        /// assertions alone would not notice the difference. Re-pinned for the in-place partial
+        /// Fisher-Yates implementation (previously RemoveAt from a candidate list, which gave
+        /// { 0, 1, 8, 5, 7 } for this same seed).
+        /// </summary>
+        [Test]
+        public void GetUniqueInts_FixedSeed_ExactSequence()
+        {
+            try
+            {
+                BasicRandomization.ResetSeed(12345);
+                var target = new BasicRandomization();
+
+                var actual = target.GetUniqueInts(5, 0, 10);
+
+                CollectionAssert.AreEqual(new[] { 0, 1, 8, 6, 2 }, actual);
+            }
+            finally
+            {
+                BasicRandomization.ResetSeed(null);
+            }
+        }
+
         [Test]
         public void ResetSeed_GetInt_SameResults()
         {

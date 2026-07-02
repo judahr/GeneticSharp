@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 
 namespace GeneticSharp
 {
@@ -68,19 +67,37 @@ namespace GeneticSharp
             var firstParent = parents[0];
             var child = firstParent.CreateNew();
             var mutableGenesIndexes = new List<int>();
-           
+            var frequencyByValue = new Dictionary<object, int>(parents.Count);
+
             for (int i = 0; i < child.Length; i++)
             {
-                // If in this set an element occurs at least the threshold number of times, it is copied into the offspring.
-                 var moreOcurrencesGeneValue = parents
-                                            .GroupBy(p => p.GetGene(i).Value)
-                                            .Where(p => p.Count() >= _threshold)
-                                            .OrderByDescending(g => g.Count())
-                                            .FirstOrDefault();
+                frequencyByValue.Clear();
+
+                foreach (var p in parents)
+                {
+                    var value = p.GetGene(i).Value;
+                    frequencyByValue[value] = frequencyByValue.TryGetValue(value, out var count) ? count + 1 : 1;
+                }
+
+                // If in this set an element occurs at least the threshold number of times, it is
+                // copied into the offspring. On a tie between two values both meeting the
+                // threshold, the value belonging to the first parent (in parent order) wins,
+                // since frequencyByValue is only updated on a strictly greater count.
+                object moreOcurrencesGeneValue = null;
+                var moreOcurrencesCount = 0;
+
+                foreach (var entry in frequencyByValue)
+                {
+                    if (entry.Value >= _threshold && entry.Value > moreOcurrencesCount)
+                    {
+                        moreOcurrencesCount = entry.Value;
+                        moreOcurrencesGeneValue = entry.Key;
+                    }
+                }
 
                 if (moreOcurrencesGeneValue != null)
                 {
-                    child.ReplaceGene(i, new Gene(moreOcurrencesGeneValue.Key));
+                    child.ReplaceGene(i, new Gene(moreOcurrencesGeneValue));
                 }
                 else
                 {

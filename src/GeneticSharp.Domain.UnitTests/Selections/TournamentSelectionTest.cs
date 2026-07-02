@@ -158,5 +158,53 @@ namespace GeneticSharp.Domain.UnitTests.Selections
             ClassicAssert.AreEqual(c4, actual[2]);
             ClassicAssert.AreEqual(c5, actual[3]);
         }
+
+        /// <summary>
+        /// Characterization test: pins today's tie-break behavior before any optimization of the
+        /// winner-selection scan. When two tournament participants tie at the max fitness, the
+        /// winner must be the one with the lowest original index in the generation - not whichever
+        /// index happens to appear first in the (unordered) randomIndexes array. GetUniqueInts is
+        /// mocked to return the indexes out of ascending order specifically to distinguish the two.
+        /// </summary>
+        [Test()]
+        public void SelectChromosomes_TiedFitnessInTournament_WinnerIsLowestOriginalIndex()
+        {
+            var target = new TournamentSelection(2, true);
+
+            // ReplaceGenes resets Fitness to null as a side effect, so genes must be set first.
+            var c0 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            c0.ReplaceGenes(0, new Gene[] { new Gene("c0"), new Gene("c0") });
+            c0.Fitness = 0.1;
+
+            var c1 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            c1.ReplaceGenes(0, new Gene[] { new Gene("c1"), new Gene("c1") });
+            c1.Fitness = 0.9;
+            c1.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(2));
+
+            var c2 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            c2.ReplaceGenes(0, new Gene[] { new Gene("c2"), new Gene("c2") });
+            c2.Fitness = 0.9;
+            c2.CreateNew().Returns(Substitute.ForPartsOf<ChromosomeBase>(2));
+
+            var c3 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            c3.ReplaceGenes(0, new Gene[] { new Gene("c3"), new Gene("c3") });
+            c3.Fitness = 0.2;
+
+            var generation = new Generation(1, new List<IChromosome>() {
+                c0, c1, c2, c3
+            });
+
+            var rnd = Substitute.For<IRandomization>();
+
+            // Deliberately returned in descending order so "first entry in randomIndexes wins"
+            // and "lowest original index wins" would disagree on this tie.
+            rnd.GetUniqueInts(2, 0, 4).Returns(new int[] { 2, 1 });
+
+            RandomizationProvider.Current = rnd;
+
+            var actual = target.SelectChromosomes(2, generation);
+
+            ClassicAssert.AreEqual("c1", actual[0].GetGene(0).Value);
+        }
     }
 }

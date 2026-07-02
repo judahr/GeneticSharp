@@ -99,5 +99,43 @@ namespace GeneticSharp.Domain.UnitTests.Crossovers
             ClassicAssert.AreEqual(44, actualChild.GetGene(4).Value);
             ClassicAssert.AreEqual(6, actualChild.GetGene(5).Value);
         }
+
+        /// <summary>
+        /// Characterization test: pins today's tie-break behavior before replacing the per-gene
+        /// GroupBy/OrderByDescending with a manual frequency count. When two distinct values both
+        /// meet the threshold with an equal count, the value belonging to the first parent (in
+        /// parent order) among the tied values must win.
+        /// </summary>
+        [Test]
+        public void Cross_TiedFrequenciesAtThreshold_FirstEncounteredValueWins()
+        {
+            var target = new VotingRecombinationCrossover(4, 2);
+
+            // Position 0: "B" (chromosome1, chromosome4) and "A" (chromosome2, chromosome3) both
+            // occur exactly twice - tied, both meeting threshold=2. "B" is first-encountered
+            // (from chromosome1), so it must win the tie.
+            var chromosome1 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            chromosome1.ReplaceGenes(0, new Gene[] { new Gene("B"), new Gene("X") });
+
+            var child = Substitute.ForPartsOf<ChromosomeBase>(2);
+            chromosome1.CreateNew().Returns(child);
+
+            var chromosome2 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            chromosome2.ReplaceGenes(0, new Gene[] { new Gene("A"), new Gene("X") });
+
+            var chromosome3 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            chromosome3.ReplaceGenes(0, new Gene[] { new Gene("A"), new Gene("X") });
+
+            var chromosome4 = Substitute.ForPartsOf<ChromosomeBase>(2);
+            chromosome4.ReplaceGenes(0, new Gene[] { new Gene("B"), new Gene("X") });
+
+            var actual = target.Cross(new List<IChromosome>() { chromosome1, chromosome2, chromosome3, chromosome4 });
+
+            ClassicAssert.AreEqual(1, actual.Count);
+            var actualChild = actual[0];
+
+            ClassicAssert.AreEqual("B", actualChild.GetGene(0).Value);
+            ClassicAssert.AreEqual("X", actualChild.GetGene(1).Value);
+        }
     }
 }

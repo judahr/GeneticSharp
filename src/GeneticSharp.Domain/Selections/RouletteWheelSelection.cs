@@ -43,18 +43,38 @@ namespace GeneticSharp
         /// <returns>The selected chromosomes.</returns>
         protected static IList<IChromosome> SelectFromWheel(int number, IList<IChromosome> chromosomes, IList<double> rouletteWheel, Func<double> getPointer)
         {
-            var selected = new List<IChromosome>();
+            var selected = new List<IChromosome>(number);
+
+            // rouletteWheel's cumulative values are built in non-decreasing order, so a binary
+            // search finds the same entry a linear scan would, without the per-draw allocations.
+            var wheel = rouletteWheel as List<double> ?? new List<double>(rouletteWheel);
 
             for (int i = 0; i < number; i++)
             {
                 var pointer = getPointer();
+                var index = wheel.BinarySearch(pointer);
 
-                var chromosome = rouletteWheel
-                                        .Select((value, index) => new { Value = value, Index = index })
-                                        .FirstOrDefault(r => r.Value >= pointer);
+                if (index < 0)
+                {
+                    // Bitwise complement of the index of the first entry greater than pointer
+                    // (or wheel.Count if every entry is less than pointer - including when the
+                    // wheel is all NaN, e.g. every chromosome has zero fitness).
+                    index = ~index;
+                }
 
-                if (chromosome != null)
-                    selected.Add(chromosomes[chromosome.Index].Clone());
+                // BinarySearch doesn't guarantee which duplicate cumulative value it lands on
+                // (e.g. a zero-fitness chromosome shares its predecessor's cumulative value), so
+                // walk back to the first entry satisfying "value >= pointer" to match the
+                // original linear-scan semantics exactly.
+                while (index > 0 && wheel[index - 1] >= pointer)
+                {
+                    index--;
+                }
+
+                if (index < wheel.Count)
+                {
+                    selected.Add(chromosomes[index].Clone());
+                }
             }
 
             return selected;

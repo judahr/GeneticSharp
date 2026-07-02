@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using NSubstitute;
 using NUnit.Framework.Legacy;
@@ -65,6 +66,24 @@ namespace GeneticSharp.Domain.UnitTests.Populations
             {
                 population.CreateInitialGeneration();
             }, "The Adam chromosome's 'CreateNew' method generated a null chromosome. This is a invalid behavior, please, check your chromosome code.");
+        }
+
+        /// <summary>
+        /// Characterization test: pins today's unconditional (Release-included) null-gene safety
+        /// net in CreateNewGeneration, before it is potentially made debug-only. A chromosome
+        /// whose genes are left unset (default Gene value, so GetGene(...).Value is null) must
+        /// still be rejected.
+        /// </summary>
+        [Test]
+        public void CreateNewGeneration_ChromosomeWithNullGeneValue_Exception()
+        {
+            var population = new Population(2, 2, new ChromosomeStub());
+            var chromosomeWithNullGene = Substitute.ForPartsOf<ChromosomeBase>(2);
+
+            Assert.Catch<InvalidOperationException>(() =>
+            {
+                population.CreateNewGeneration(new List<IChromosome>() { chromosomeWithNullGene });
+            }, "The chromosome is generating genes with null value.");
         }
 
         [Test]

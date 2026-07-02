@@ -416,20 +416,20 @@ namespace GeneticSharp
                 TaskExecutor.Clear();
             }
 
-            Population.CurrentGeneration.Chromosomes = Population.CurrentGeneration.Chromosomes.OrderByDescending(c => c.Fitness.Value).ToList();
+            // Generation.End (called right after, via EndCurrentGeneration) sorts the chromosomes
+            // descending by fitness again before anything reads them, so sorting here as well is
+            // redundant.
         }
 
         /// <summary>
         /// Runs the evaluate fitness.
         /// </summary>
         /// <param name="chromosome">The chromosome.</param>
-        private void RunEvaluateFitness(object chromosome)
+        private void RunEvaluateFitness(IChromosome chromosome)
         {
-            var c = chromosome as IChromosome;
-
             try
             {
-                c.Fitness = Fitness.Evaluate(c);
+                chromosome.Fitness = Fitness.Evaluate(chromosome);
             }
             catch (Exception ex)
             {

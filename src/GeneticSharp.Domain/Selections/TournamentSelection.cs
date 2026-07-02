@@ -88,7 +88,28 @@ namespace GeneticSharp
             while (selected.Count < number)
             {
                 var randomIndexes = RandomizationProvider.Current.GetUniqueInts(Size, 0, candidates.Count);
-                var tournamentWinner = candidates.Where((c, i) => randomIndexes.Contains(i)).OrderByDescending(c => c.Fitness).First();
+                var indexSet = new HashSet<int>(randomIndexes);
+
+                // Iterating candidates in ascending index order and only replacing the running
+                // winner on a strictly greater fitness (not >=) preserves the original
+                // Where(...).OrderByDescending(...).First() tie-break: on a fitness tie, the
+                // participant with the lowest original index wins.
+                IChromosome tournamentWinner = null;
+
+                for (int i = 0; i < candidates.Count; i++)
+                {
+                    if (!indexSet.Contains(i))
+                    {
+                        continue;
+                    }
+
+                    var candidate = candidates[i];
+
+                    if (tournamentWinner == null || candidate.Fitness > tournamentWinner.Fitness)
+                    {
+                        tournamentWinner = candidate;
+                    }
+                }
 
                 selected.Add(tournamentWinner.Clone());
 

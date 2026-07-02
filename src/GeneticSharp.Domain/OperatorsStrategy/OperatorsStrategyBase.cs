@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace GeneticSharp
 {
@@ -39,13 +38,25 @@ namespace GeneticSharp
         protected static IList<IChromosome> SelectParentsAndCross(IPopulation population, ICrossover crossover,
             float crossoverProbability, IList<IChromosome> parents, int firstParentIndex)
         {
-            var selectedParents = parents.Skip(firstParentIndex).Take(crossover.ParentsNumber).ToList();
+            var parentsNumber = crossover.ParentsNumber;
+
+            // Checks if there are enough parents left to select, because in the end of the list
+            // we can have some rest chromosomes that don't fill a full parent set.
+            if (parents.Count - firstParentIndex < parentsNumber)
+            {
+                return null;
+            }
 
             // If match the probability cross is made, otherwise the offspring is an exact copy of the parents.
-            // Checks if the number of selected parents is equal which the crossover expect, because the in the end of the list we can
-            // have some rest chromosomes.
-            if (selectedParents.Count == crossover.ParentsNumber && RandomizationProvider.Current.GetDouble() <= crossoverProbability)
+            if (RandomizationProvider.Current.GetDouble() <= crossoverProbability)
             {
+                var selectedParents = new List<IChromosome>(parentsNumber);
+
+                for (int i = firstParentIndex; i < firstParentIndex + parentsNumber; i++)
+                {
+                    selectedParents.Add(parents[i]);
+                }
+
                 return crossover.Cross(selectedParents);
             }
 

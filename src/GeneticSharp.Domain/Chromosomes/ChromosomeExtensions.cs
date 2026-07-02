@@ -23,12 +23,15 @@ namespace GeneticSharp
         {
             for (int i = 0; i < chromosomes.Count; i++)
             {
-                var c = chromosomes[i];
-                var notRepeatedGenesLength = c.GetGenes().Distinct().Count();
+                var genes = chromosomes[i].GetGenes();
+                var seen = new HashSet<Gene>(genes.Length);
 
-                if (notRepeatedGenesLength < c.Length)
+                foreach (var gene in genes)
                 {
-                    return true;
+                    if (!seen.Add(gene))
+                    {
+                        return true;
+                    }
                 }
             }
 
