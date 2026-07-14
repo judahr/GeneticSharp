@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet --list-sdks)",
+      "Bash(dotnet --list-runtimes)",
+      "Bash(dotnet build *)",
+      "Bash(xargs grep -H \"TargetFramework\")",
+      "Bash(xargs ls)",
+      "Bash(dotnet test *)",
+      "Bash(echo \"exit code: $?\")",
+      "Read(//c/Users/judah/AppData/Local/Temp/claude/C--Users-judah-source-lib-GeneticSharp/5ca60f2f-5afd-43e1-b08f-4eb5255399a3/scratchpad/**)",
+      "Bash(xargs -I{} sh -c 'echo ==={}===; cat \"{}\"')",
+      "Bash(xargs cat)",
+      "Bash(dotnet run *)",
+      "Bash(powershell -Command \"Get-Process | Where-Object { \\\\$_.ProcessName -match 'testhost|dotnet|vstest' } | Select-Object Id,ProcessName,StartTime\" 2>/dev/null)",
+      "Bash(powershell -Command \"Get-CimInstance Win32_Process | Where-Object { \\\\$_.Name -eq 'dotnet.exe' } | Select-Object ProcessId,CommandLine | Format-List\")",
+      "Bash(powershell -Command \"[System.Environment]::ProcessorCount\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(xargs -I{} echo {})",
+      "Bash(cd *)",
+      "Bash(perl -i -pe 's/^\\(\\\\s*var chromosome = Substitute\\\\.ForPartsOf<ChromosomeBase>\\\\\\(\\\\d+\\\\\\);\\)$/$1\\\\n            chromosome.GeneOrdering.Returns\\(GeneOrdering.Permutation\\);/' DisplacementMutationTest.cs)",
+      "Bash(perl -v)",
+      "Bash(perl -i.bak -pe 's/^\\(\\\\s*var chromosome = Substitute\\\\.ForPartsOf<ChromosomeBase>\\\\\\(\\\\d+\\\\\\);\\)$/$1\\\\n            chromosome.GeneOrdering.Returns\\(GeneOrdering.Permutation\\);/' DisplacementMutationTest.cs)",
+      "Bash(perl -pe 's/ForPartsOf/XXXX/g' DisplacementMutationTest.cs)",
+      "Bash(perl -pe 's/^\\(\\\\s*var chromosome = Substitute\\\\.ForPartsOf<ChromosomeBase>\\\\\\(\\\\d+\\\\\\);\\)$/$1\\\\n            chromosome.GeneOrdering.Returns\\(GeneOrdering.Permutation\\);/')",
+      "Bash(xxd)",
+      "Bash(perl -pe 's/^\\(\\\\s*var chromosome = Substitute\\\\.ForPartsOf<ChromosomeBase>\\\\\\(\\\\d+\\\\\\);\\)$/$1\\\\n            chromosome.GeneOrdering.Returns\\(GeneOrdering.Permutation\\);/' DisplacementMutationTest.cs.bak)",
+      "Read(//tmp/**)",
+      "Bash(awk 'END{print NR}' DisplacementMutationTest.cs.bak)",
+      "Bash(perl -ne 'BEGIN{$/=undef} print length\\($_\\)' DisplacementMutationTest.cs.bak)",
+      "Bash(perl -0777 -ne 'my @m = \\($_ =~ /var chromosome = Substitute/g\\); print scalar\\(@m\\), \"\\\\n\"' DisplacementMutationTest.cs.bak)",
+      "Bash(perl -ne 'if\\(/chromosome = Substitute/\\){print \"LINE:[$_]\"}' DisplacementMutationTest.cs.bak)",
+      "Bash(git commit *)"
+    ]
+  }
+}
